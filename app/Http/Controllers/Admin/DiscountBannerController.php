@@ -100,9 +100,13 @@ class DiscountBannerController extends Controller
          ]);
         $banners = DiscountBanner::findOrFail($id);
 
-        $request->file('image_left');
-        unlink( $banners->image_left);
         $image_left = $request->file('image_left');
+        if($image_left != '')
+        {
+            if(file_exists($request->file('image_left'))){
+                unlink( $banners->image_left);
+            }
+        }
         $final_image_left  = $this->image_settings($image_left);
         $banners->image_left = $final_image_left;
         $banners->save();

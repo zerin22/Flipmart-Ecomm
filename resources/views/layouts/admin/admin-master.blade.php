@@ -214,7 +214,6 @@
         }
     </style>
 
-
 </head>
 
 
@@ -230,7 +229,7 @@
     @yield('content')
 
     <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2023 <a href="https://opediatech.com/">Opedia Technologies Limited</a>.</strong>
+        <strong>Copyright &copy; 2021-2023 <a href="https://opediatech.com/">Opedia Technologies Limited</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
             <b>Version</b> 1.0.0

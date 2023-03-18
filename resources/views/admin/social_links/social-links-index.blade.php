@@ -14,7 +14,8 @@
                                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Social Links</li>
                                 </ul>
-                            </div><!-- /.col -->
+                            </div>
+
                             <div class="item_2">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                     Add Social Links

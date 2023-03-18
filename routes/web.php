@@ -221,7 +221,7 @@ Route::group(['prefix' => 'user', 'middleware'=> ['user', 'auth'],], function() 
     Route::get('/updatePasswordShow', [UserController::class, 'updatePasswordShow'])->name('updatePassword-Show');
     Route::post('/password/store', [UserController::class, 'passwordStore'])->name('password-store');
     //user image upload
-    Route::post('/photoUpload', [UserController::class, 'photoUpload'])->name('file.Upload');
+    Route::post('/photo/Upload', [UserController::class, 'photoUpload'])->name('file.Upload');
 
     // cardPage
     Route::get('/get-shoppingCart', [CartPageController::class, 'getShoppingCart'])->name('getShoppingCart');

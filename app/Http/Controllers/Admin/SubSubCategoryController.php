@@ -124,26 +124,29 @@ class SubSubCategoryController extends Controller
             "subsubcategory_name_en.required" => "SubCategory English field required",
         ]);
 
-        $checkName = SubSubCategory::where('subcategory_id', $request->subcategory_id)->where('subsubcategory_name_en', $request->subsubcategory_name_en)->where('subsubcategory_name_bn', $request->subsubcategory_name_bn)->exists();
-        if($checkName)
-        {
-            return redirect()->back()->with('fail', 'Sub SubCategory already exists under this subcategory');
-        }else{
-            $result = SubSubCategory::findOrFail($id)->Update([
-                'category_id' => $request->category_id,
-                'subcategory_id' => $request->subcategory_id,
-                'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
-                'subsubcategory_name_en' => $request->subsubcategory_name_en,
-                'subsubcategory_slug_bn' => str_replace(' ', '-', $request->subsubcategory_name_bn),
-                'subsubcategory_slug_en'=> strtolower(str_replace(' ', '-', $request->subsubcategory_name_en)),
-                'created_at' => Carbon::now(),
-            ]);
+        // $checkName = SubSubCategory::where('subcategory_id', $request->subcategory_id)->where('subsubcategory_name_en', $request->subsubcategory_name_en)->where('subsubcategory_name_bn', $request->subsubcategory_name_bn)->first();
 
-            if($result){
-                return redirect()->route('SubSubCategory.index')->with('success', 'Data update success');
-            }else {
-                return redirect()->route('SubSubCategory.index')->with('fail', 'Data not update! Please try again');
-            }
+
+        // if($checkName){
+        //     return redirect()->back()->with('fail', 'Sub SubCategory already exists under this subcategory');
+        // }else{
+        //     }
+
+
+        $result = SubSubCategory::findOrFail($id)->Update([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
+            'subsubcategory_name_en' => $request->subsubcategory_name_en,
+            'subsubcategory_slug_bn' => str_replace(' ', '-', $request->subsubcategory_name_bn),
+            'subsubcategory_slug_en'=> strtolower(str_replace(' ', '-', $request->subsubcategory_name_en)),
+            'created_at' => Carbon::now(),
+        ]);
+
+        if($result){
+            return redirect()->route('SubSubCategory.index')->with('success', 'Data update success');
+        }else {
+            return redirect()->route('SubSubCategory.index')->with('fail', 'Data not update! Please try again');
         }
     }
 
@@ -168,8 +171,5 @@ class SubSubCategoryController extends Controller
         return  json_encode ($result);
 
     }
-
-
-
 
 }

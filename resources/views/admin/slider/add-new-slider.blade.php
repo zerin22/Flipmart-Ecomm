@@ -9,7 +9,7 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-10 m-auto">
+                <div class="col-md-8 m-auto">
                     <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                         <div class="item_1">
                             <ul class="breadcrumb">
@@ -70,18 +70,17 @@
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="form-group text-center mt-4">
-                                    <input type="submit"  name="submit" value="Add" class="btn btn-warning btn-lg">
+                                <div class="form-group">
+                                    <input type="submit"  name="submit" value="Save" class="btn btn-success">
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
+
 @endsection
 

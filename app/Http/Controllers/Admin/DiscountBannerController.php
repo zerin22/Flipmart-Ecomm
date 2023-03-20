@@ -59,8 +59,6 @@ class DiscountBannerController extends Controller
         $disBannerImage->save();
 
         return redirect()->route('banner.index')->with('success', 'Data added successfully');
-
-
     }
 
     /**
@@ -95,22 +93,24 @@ class DiscountBannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'image_left' => 'image|mimes:jpg,png,jpeg,gif,svg',
-         ]);
-        $banners = DiscountBanner::findOrFail($id);
-
-        $image_left = $request->file('image_left');
-        if($image_left != '')
+        if($request->file('image_left'))
         {
-            if(file_exists($request->file('image_left'))){
-                unlink( $banners->image_left);
-            }
+            $request->validate([
+                'image_left' => 'image|mimes:jpg,png,jpeg,gif,svg',
+             ]);
+
+            $banners = DiscountBanner::findOrFail($id);
+            $image_left = $request->file('image_left');
+            unlink( $banners->image_left);
+            $final_image_left  = $this->image_settings($image_left);
+            $banners->image_left = $final_image_left;
+            $banners->save();
+
+            return redirect()->route('banner.index')->with('success', 'Data update successfully');
+
+        }else{
+            return redirect()->back()->with('error', 'Nothing to update');
         }
-        $final_image_left  = $this->image_settings($image_left);
-        $banners->image_left = $final_image_left;
-        $banners->save();
-        return redirect()->route('banner.index')->with('success', 'Data update successfully');
 
     }
 
@@ -122,9 +122,9 @@ class DiscountBannerController extends Controller
      */
     public function destroy($id)
     {
-        // $banners = DiscountBanner::findOrFail($id);
-        // unlink($banners->image_left);
-        // $banners->delete();
-        // return redirect()->route('banner.index')->with('success', 'Data delete successfully');
+        $banners = DiscountBanner::findOrFail($id);
+        unlink($banners->image_left);
+        $banners->delete();
+        return redirect()->route('banner.index')->with('success', 'Data delete successfully');
     }
 }

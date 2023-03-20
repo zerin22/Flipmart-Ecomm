@@ -393,7 +393,7 @@
                 <li class="nav-item">
                     <a href="{{ route('social-links.index') }}" class="nav-link @yield('allSocialLinksActive')">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Social Links</p>
+                        <p>Settings</p>
                     </a>
                 </li>
 

@@ -53,10 +53,12 @@ class AdminCommentController extends Controller
         $data->save();
         return redirect()->route('comments.approved.show')->with('success', 'Comment Reply Success');
     }
-    //delete item
+    //Approved Or Pending Comment Delete Item
     public function commentDelete($id){
         Comment::findOrFail($id)->delete();
-        return redirect()->route('comments.approved.show')->with('success', 'Comment Delete Success');
+        return redirect()->back()->with('success', 'Comment Delete Success');
     }
+
+
 
 }

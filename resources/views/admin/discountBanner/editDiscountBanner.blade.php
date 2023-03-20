@@ -42,15 +42,15 @@
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="form-group text-center mt-4">
-                                    <input type="submit"  name="submit" value="Update" class="btn btn-warning btn-lg">
+                                <div class="form-group">
+                                    <input type="submit"  name="submit" value="Update" class="btn btn-success">
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 </div>
 

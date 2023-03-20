@@ -8,18 +8,19 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('blog.index') }}">Blog</a></li>
-                            <li class="breadcrumb-item active">View Blog</li>
-                        </ul>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
+                <div class="col-md-10 m-auto">
+                    <div class="breadrow d-flex justify-content-between mb-3 mt-4">
+                        <div class="item_1">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('blog.index') }}">Blog</a></li>
+                                <li class="breadcrumb-item active">View Blog</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->
-        <!-- Main content -->
+    >
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -55,11 +56,10 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
+
 @endsection
 
 

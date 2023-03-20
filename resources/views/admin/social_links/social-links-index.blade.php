@@ -50,17 +50,36 @@
                                         <td>{{ $socialLink->social_link }}</td>
                                         <td>{{ $socialLink->class_name }}</td>
                                         <td>
-                                            <span class="d-flex justify-content-around">
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal__{{ $socialLink->id }}">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
+                                            <span class="d-flex justify-content-center">
+                                                <button type="button" class="btn btn-info mr-3" data-toggle="modal" data-target="#exampleModal__{{ $socialLink->id }}">Edit</button>
 
-                                                <form action="{{ route('social-links.destroy', $socialLink->id) }}" method="POST" >
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                                </form>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete__{{ $socialLink->id }}">Delete</button>
                                             </span>
+
+
+                                            <!-- Modal For Delete -->
+                                            <div class="modal fade" id="exampleModalDelete__{{ $socialLink->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+
+                                                            <span class=""><svg xmlns="http://www.w3.org/2000/svg" height="60" width="60" viewBox="0 0 24 24"><path fill="#f07f8f" d="M20.05713,22H3.94287A3.02288,3.02288,0,0,1,1.3252,17.46631L9.38232,3.51123a3.02272,3.02272,0,0,1,5.23536,0L22.6748,17.46631A3.02288,3.02288,0,0,1,20.05713,22Z"/><circle cx="12" cy="17" r="1" fill="#e62a45"/><path fill="#e62a45" d="M12,14a1,1,0,0,1-1-1V9a1,1,0,0,1,2,0v4A1,1,0,0,1,12,14Z"/></svg></span>
+                                                            <h4 class="h4 mb-0 mt-3" style="color: red">Warning</h4>
+                                                            <p class="card-text">Are you sure, you want to delete data?</p>
+                                                            <strong class="card-text" style="color: red">Once deleted, you will not be able to recover this data!</strong>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <form action="{{ route('social-links.destroy', $socialLink->id) }}" method="POST" >
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
 
@@ -81,7 +100,7 @@
                                                     <div class="modal-body">
                                                         <div class="form-group">
                                                             <label>Link Name</label>
-                                                            <input type="text"  class="form-control" value="{{ $socialLink->name }}" name="name" placeholder="Social Link Name">
+                                                            <input type="text"  class="form-control @error('name') is-invalid @enderror" value="{{ $socialLink->name }}" name="name" placeholder="Social Link Name">
                                                             @error('name')
                                                                 <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                             @enderror
@@ -89,7 +108,7 @@
 
                                                         <div class="form-group">
                                                             <label>Social Link</label>
-                                                            <input type="url"  class="form-control" value="{{ $socialLink->social_link }}" name="social_link" placeholder="Social Link">
+                                                            <input type="url"  class="form-control @error('social_link') is-invalid @enderror" value="{{ $socialLink->social_link }}" name="social_link" placeholder="Social Link">
                                                             @error('social_link')
                                                                 <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                             @enderror
@@ -97,7 +116,7 @@
 
                                                         <div class="form-group">
                                                             <label>Class Name</label>
-                                                            <input type="text"  class="form-control" value="{{ $socialLink->class_name }}" name="class_name" placeholder="Social Link Name">
+                                                            <input type="text"  class="form-control @error('class_name') is-invalid @enderror" value="{{ $socialLink->class_name }}" name="class_name" placeholder="Social Link Name">
                                                             @error('class_name')
                                                                 <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                             @enderror
@@ -107,7 +126,7 @@
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-warning">Update</button>
+                                                        <button type="submit" class="btn btn-success">Update</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -121,6 +140,7 @@
             </div>
 
         </section>
+
         <!--Add Social Link Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -138,7 +158,7 @@
 
                             <div class="form-group">
                                 <label>Link Name</label>
-                                <input type="text"  class="form-control" value="{{ old('name') }}" name="name" placeholder="Social Link Name">
+                                <input type="text"  class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name" placeholder="Social Link Name">
                                 @error('name')
                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                 @enderror
@@ -146,7 +166,7 @@
 
                             <div class="form-group">
                                 <label>Social Link</label>
-                                <input type="url"  class="form-control" value="{{ old('social_link') }}" name="social_link" placeholder="Social Link">
+                                <input type="url"  class="form-control @error('social_link') is-invalid @enderror" value="{{ old('social_link') }}" name="social_link" placeholder="Social Link">
                                 @error('social_link')
                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                 @enderror
@@ -154,7 +174,7 @@
 
                             <div class="form-group">
                                 <label>Class Name</label>
-                                <input type="text"  class="form-control" value="{{ old('class_name') }}" name="class_name" placeholder="Social Link Name">
+                                <input type="text"  class="form-control @error('class_name') is-invalid @enderror" value="{{ old('class_name') }}" name="class_name" placeholder="Social Link Name">
                                 @error('class_name')
                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                 @enderror
@@ -164,7 +184,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-warning">Save</button>
+                            <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </form>
                 </div>

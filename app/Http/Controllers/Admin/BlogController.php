@@ -140,6 +140,7 @@ class BlogController extends Controller
         }
 
         $blog->title = $request->title;
+        $blog->slug = $request->slug;
         $blog->description = $request->description;
         $blog->save();
         return redirect()->route('blog.index')->with('success', 'Blog update success');

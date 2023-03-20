@@ -31,10 +31,9 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </div>
-        <!-- /.content-header -->
-        <!-- Main content -->
+
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -104,11 +103,7 @@
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        {{-- <form action="{{ route('SubSubCategory.destroy', $item->id) }}" method="POST" >
-                                                            @csrf
-                                                                @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button> --}}
-                                                            <a href="{{ route('softDelete.delete', $item->id) }}" class="btn btn-danger">Delete</a>
+                                                        <a href="{{ route('softDelete.delete', $item->id) }}" class="btn btn-danger">Delete</a>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -122,12 +117,11 @@
                         </table>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
-@endsection()
+
+@endsection
 
 @section('scripts')
     <script type="text/javascript">
@@ -136,6 +130,6 @@
             $('#table_id').DataTable();
         } );
     </script>
-@endsection()
+@endsection
 
 

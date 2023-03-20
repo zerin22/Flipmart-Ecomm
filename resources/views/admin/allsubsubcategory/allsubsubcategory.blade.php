@@ -95,7 +95,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label>Select Category</label>
-                                        <select class="form-control" name="category_id">
+                                        <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
                                             <option label="--Choose--"></option>
                                             @foreach($categories as $cat)
                                                 <option value="{{ $cat->id }}">{{ $cat->category_name_en}}</option>
@@ -108,7 +108,7 @@
 
                                     <div class="form-group">
                                         <label>Select Sub Category</label>
-                                        <select class="form-control" name="subcategory_id">
+                                        <select class="form-control @error('subcategory_id') is-invalid @enderror" name="subcategory_id">
                                             <option label="--Choose--"></option>
                                         </select>
                                         @error('subcategory_id')
@@ -117,32 +117,30 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Sub SubCategory Name Bn</label>
-                                        <input type="text" class="form-control" value="{{ old('subsubcategory_name_bn') }}" name="subsubcategory_name_bn" placeholder="ইলেকট্রনিক্স">
+                                        <input type="text" class="form-control @error('subsubcategory_name_bn') is-invalid @enderror" value="{{ old('subsubcategory_name_bn') }}" name="subsubcategory_name_bn" placeholder="ইলেকট্রনিক্স">
                                         @error('subsubcategory_name_bn')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label>Sub SubCategory Name En</label>
-                                        <input type="text" class="form-control" value="{{ old('subsubcategory_name_en') }}" name="subsubcategory_name_en" placeholder="Electronics">
+                                        <input type="text" class="form-control @error('subsubcategory_name_en') is-invalid @enderror" value="{{ old('subsubcategory_name_en') }}" name="subsubcategory_name_en" placeholder="Electronics">
                                         @error('subsubcategory_name_en')
                                             <p class="text-danger font-weight-bold">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="submit"  name="submit" value="Add" class="btn btn-warning btn-lg">
+                                        <input type="submit"  name="submit" value="Save" class="btn btn-success">
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 @endsection
 
 @section('scripts')

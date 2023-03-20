@@ -184,6 +184,7 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
     Route::post("/comments/replay/store", [AdminCommentController::class, 'commentsReplayStore'])->name('comments.replay.store');
     Route::get("/comment/delete/{id}", [AdminCommentController::class, 'commentDelete'])->name('comments.delete');
 
+
     //stock management
     Route::resource('stock', StockManagement::class);
 

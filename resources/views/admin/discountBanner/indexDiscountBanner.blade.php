@@ -8,7 +8,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-10 m-auto">
+                    <div class="col-md-10 m-auto">
                         <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                             <div class="item_1">
                                 <ul class="breadcrumb">
@@ -17,7 +17,7 @@
                                 </ul>
                             </div><!-- /.col -->
                             <div class="item_2">
-                                @if (count($banners) <= 0)
+                                @if (count($banners) <= 1)
                                 <a class="btn btn-primary" href="{{ route('banner.create') }}">Add New Banner</a>
                                 @endif
                             </div>
@@ -46,8 +46,8 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td><img width="200px" height="150px" src="{{ asset($banner->image_left)  }}" alt=""></td>
                                     <td>
-                                        <span class="d-flex justify-content-around">
-                                        <a href=" {{ route('banner.edit', $banner->id) }} " class="btn btn-info">Edit</a>
+                                        <span class="d-flex justify-content-center">
+                                            <a href=" {{ route('banner.edit', $banner->id) }} " class="btn btn-info">Edit</a>
                                         </span>
                                     </td>
                                 </tr>

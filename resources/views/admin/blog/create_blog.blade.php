@@ -8,7 +8,7 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-10 m-auto">
+                <div class="col-md-8 m-auto">
                     <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                         <div class="item_1">
                             <ul class="breadcrumb">
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -35,7 +35,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label>Blog Title</label>
-                                    <input type="text" id="title"  class="form-control" value="{{ old('title') }}" name="title" placeholder="Title">
+                                    <input type="text" id="title"  class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title" placeholder="Title">
                                     @error('title')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                     @enderror
@@ -51,7 +51,7 @@
 
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea class="form-control" id="editorBlog" value="{{ old('description') }}" name="description" placeholder="Example..."></textarea>
+                                    <textarea class="form-control @error('description') is-invalid @enderror" id="editorBlog" value="{{ old('description') }}" name="description" placeholder="Example..."></textarea>
                                     @error('description')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                     @enderror
@@ -59,9 +59,8 @@
 
                                 <div class="form-group">
                                     <label>Thumbnail Image: (390px 215px)</label>
-                                    <input type="file" onchange="document.getElementById('img_id1').src=window.URL.createObjectURL(this.files[0])" name="thumbnail_image" class="mb-3">
+                                    <input type="file" onchange="document.getElementById('img_id1').src=window.URL.createObjectURL(this.files[0])" name="thumbnail_image" class=" mb-3">
                                     <img id="img_id1" width="500px" height="300px" src="{{ asset('backend') }}/images/brand/default-image.jpg" alt="">
-
                                     @error('thumbnail_image')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                     @enderror
@@ -69,14 +68,13 @@
                                 <div class="form-group">
                                     <label>Feature Image:</label>
                                     <input type="file" onchange="document.getElementById('img_id2').src=window.URL.createObjectURL(this.files[0])" name="feature_image" class="mb-3">
-                                    <img id="img_id2" width="500px" height="300px" src="{{ asset('backend') }}/images/brand/default-image.jpg" alt="">
-
+                                    <img id="img_id2" width="500px" height="300px" src="{{ asset('backend') }}/images/brand/default-image.jpg" alt="Feature Image">
                                     @error('feature_image')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="form-group text-center mt-4">
-                                    <input type="submit"  name="submit" value="Add" class="btn btn-warning btn-lg">
+                                <div class="form-group">
+                                    <input type="submit"  name="submit" value="Save" class="btn btn-success">
                                 </div>
                             </form>
                         </div>

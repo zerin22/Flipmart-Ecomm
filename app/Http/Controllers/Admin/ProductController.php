@@ -206,7 +206,9 @@ class ProductController extends Controller
         $products = Product::findOrFail($id);
         $categorys = Category::latest()->get();
         $subcategories = SubCategory::latest()->get();
+        // $subcategories = SubCategory::where('category_id', $products->category_id)->get();
         $subsubcategories = SubSubCategory::latest()->get();
+        // $subsubcategories = SubSubCategory::where('subcategory_id', $products->subcategory_id)->get();
         $multiimages = MultiImage::where('product_id', $id)->latest()->get();
         return view('admin.product.edit-product', compact('products', 'categorys', 'multiimages','subcategories','subsubcategories'));
     }

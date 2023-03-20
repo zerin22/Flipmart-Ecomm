@@ -9,7 +9,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-10 m-auto">
+                    <div class="col-md-10 m-auto">
                         <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                             <div class="item_1">
                                 <ul class="breadcrumb">
@@ -40,7 +40,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Select Category <span style="color:red">*</span> </label>
-                                                <select class="form-control" name="category_id">
+                                                <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
                                                     <option label="--choose--"></option>
                                                     @foreach($categorys as $item)
                                                         <option value="{{ $item->id }}">{{ $item->category_name_en }}</option>
@@ -54,7 +54,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Select SubCategory <span style="color:red">*</span></label>
-                                                <select class="form-control" name="subcategory_id">
+                                                <select class="form-control @error('subcategory_id') is-invalid @enderror" name="subcategory_id">
                                                     <option label="--choose--"></option>
 
                                                 </select>
@@ -80,7 +80,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Product Name English<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control"  id="title" value="{{ old('product_name_en') }}" name="product_name_en" placeholder="Dell Laptop ...">
+                                                <input type="text" class="form-control @error('product_name_en') is-invalid @enderror"  id="title" value="{{ old('product_name_en') }}" name="product_name_en" placeholder="Dell Laptop ...">
                                                 @error('product_name_en')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                 @enderror
@@ -90,7 +90,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Product Name Bangle<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control" id="title2" value="{{ old('product_name_bn') }}" name="product_name_bn" placeholder="ডেল ল্যাপটপ ...">
+                                                <input type="text" class="form-control @error('product_name_bn') is-invalid @enderror" id="title2" value="{{ old('product_name_bn') }}" name="product_name_bn" placeholder="ডেল ল্যাপটপ ...">
                                                 @error('product_name_bn')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                 @enderror
@@ -132,7 +132,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Product Tags Bangle<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control"  value="{{ old('product_tags_bn') }}" name="product_tags_bn" data-role="tagsinput" placeholder="ডেল, ওয়ালটন, এইচপি ...">
+                                                <input type="text" class="form-control @error('product_tags_bn') is-invalid @enderror"  value="{{ old('product_tags_bn') }}" name="product_tags_bn" data-role="tagsinput" placeholder="ডেল, ওয়ালটন, এইচপি ...">
                                                 @error('product_tags_bn')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                 @enderror
@@ -144,7 +144,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Title English<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control"  value="{{ old('product_title_en') }}" name="product_title_en" placeholder="Top 10 Hp laptop. ...">
+                                                <input type="text" class="form-control @error('product_title_en') is-invalid @enderror"  value="{{ old('product_title_en') }}" name="product_title_en" placeholder="Top 10 Hp laptop. ...">
                                                 @error('product_title_en')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                 @enderror
@@ -153,7 +153,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Title Bangle<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control" value="{{ old('product_title_bn') }}" name="product_title_bn" placeholder="শীর্ষ 10 এইচপি ল্যাপটপ। ...">
+                                                <input type="text" class="form-control @error('product_title_bn') is-invalid @enderror" value="{{ old('product_title_bn') }}" name="product_title_bn" placeholder="শীর্ষ 10 এইচপি ল্যাপটপ। ...">
                                                 @error('product_title_bn')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                 @enderror
@@ -206,7 +206,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Product Code<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control"  value="{{ old('product_code') }}" name="product_code" placeholder="100">
+                                                <input type="text" class="form-control @error('product_code') is-invalid @enderror"  value="{{ old('product_code') }}" name="product_code" placeholder="100">
                                                 @error('product_code')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                 @enderror
@@ -215,7 +215,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Product Code Quantity<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control" value="{{ old('product_qty') }}" name="product_qty" placeholder="200">
+                                                <input type="text" class="form-control @error('product_qty') is-invalid @enderror" value="{{ old('product_qty') }}" name="product_qty" placeholder="200">
                                                 @error('product_qty')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                 @enderror
@@ -224,7 +224,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Product Selling Price<span style="color:red">*</span></label>
-                                                <input type="text" class="form-control" value="{{ old('selling_price') }}" name="selling_price" placeholder="200Tk">
+                                                <input type="text" class="form-control @error('selling_price') is-invalid @enderror" value="{{ old('selling_price') }}" name="selling_price" placeholder="200Tk">
                                                  @error('selling_price')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                                  @enderror

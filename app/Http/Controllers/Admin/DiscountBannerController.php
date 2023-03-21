@@ -109,7 +109,7 @@ class DiscountBannerController extends Controller
             return redirect()->route('banner.index')->with('success', 'Data update successfully');
 
         }else{
-            return redirect()->back()->with('error', 'Nothing to update');
+            return redirect()->back()->with('fail', 'Nothing to update');
         }
 
     }

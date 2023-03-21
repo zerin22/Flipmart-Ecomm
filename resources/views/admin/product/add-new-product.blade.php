@@ -353,7 +353,7 @@
             })
         });
 
-        // SubSub category ajax show
+        // SubSub category ajax sho
         $('select[name="subcategory_id"]').on('change', function(event){
             event.preventDefault();
             let subcategory_id = $(this).val();

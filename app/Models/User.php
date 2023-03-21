@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Cache;
+use Illuminate\Support\Facades\Cache as FacadesCache;
 
 class User extends Authenticatable
 {
@@ -59,5 +60,10 @@ class User extends Authenticatable
     public function relationWithBlog()
     {
         return $this->hasMany(Blog::class);
+    }
+
+    public function relationWithAdminBio()
+    {
+        return $this->hasOne(AdminBio::class, 'auth_id', 'id');
     }
 }

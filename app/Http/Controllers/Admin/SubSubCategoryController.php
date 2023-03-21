@@ -124,29 +124,28 @@ class SubSubCategoryController extends Controller
             "subsubcategory_name_en.required" => "SubCategory English field required",
         ]);
 
-        // $checkName = SubSubCategory::where('subcategory_id', $request->subcategory_id)->where('subsubcategory_name_en', $request->subsubcategory_name_en)->where('subsubcategory_name_bn', $request->subsubcategory_name_bn)->first();
 
+        $checkName = SubSubCategory::where('subcategory_id', $request->subcategory_id)->where(['subsubcategory_name_en'=> $request->subsubcategory_name_en, 'subsubcategory_name_bn' => $request->subsubcategory_name_bn])->first();
 
-        // if($checkName){
-        //     return redirect()->back()->with('fail', 'Sub SubCategory already exists under this subcategory');
-        // }else{
-        //     }
+        if($checkName){
+            return redirect()->back()->with('fail', 'Sub SubCategory already exists under this subcategory');
+        }else{
 
+            $result = SubSubCategory::findOrFail($id)->Update([
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
+                'subsubcategory_name_en' => $request->subsubcategory_name_en,
+                'subsubcategory_slug_bn' => str_replace(' ', '-', $request->subsubcategory_name_bn),
+                'subsubcategory_slug_en'=> strtolower(str_replace(' ', '-', $request->subsubcategory_name_en)),
+                'created_at' => Carbon::now(),
+            ]);
 
-        $result = SubSubCategory::findOrFail($id)->Update([
-            'category_id' => $request->category_id,
-            'subcategory_id' => $request->subcategory_id,
-            'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
-            'subsubcategory_name_en' => $request->subsubcategory_name_en,
-            'subsubcategory_slug_bn' => str_replace(' ', '-', $request->subsubcategory_name_bn),
-            'subsubcategory_slug_en'=> strtolower(str_replace(' ', '-', $request->subsubcategory_name_en)),
-            'created_at' => Carbon::now(),
-        ]);
-
-        if($result){
-            return redirect()->route('SubSubCategory.index')->with('success', 'Data update success');
-        }else {
-            return redirect()->route('SubSubCategory.index')->with('fail', 'Data not update! Please try again');
+            if($result){
+                return redirect()->route('SubSubCategory.index')->with('success', 'Data update success');
+            }else {
+                return redirect()->route('SubSubCategory.index')->with('fail', 'Data not update! Please try again');
+            }
         }
     }
 

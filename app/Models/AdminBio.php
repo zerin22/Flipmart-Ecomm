@@ -13,6 +13,6 @@ class AdminBio extends Model
 
     public function relationWithUser()
     {
-        return $this->belongsTo(User::class, 'auth_id', 'id');
+        return $this->belongsTo(User::class, 'id', 'auth_id');
     }
 }

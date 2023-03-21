@@ -307,7 +307,7 @@
 
 </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(".commentsDeleteButton").on("click", function (){
         let deleteId =  $(this).attr("data-id");
         swal({
@@ -328,7 +328,7 @@
                 }
             });
     });
-</script>
+</script> --}}
 
 
 <script type="text/javascript">

@@ -101,6 +101,9 @@
     <div class="copyright-bar">
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding social">
+                {{-- @php
+                    $socialLinks = App\Models\AdminSocialLink::latest();
+                @endphp --}}
                 <ul class="link">
                     <li class="fb pull-left"><a target="_blank" rel="nofollow" href="" title="Facebook"></a></li>
                     <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>

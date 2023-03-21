@@ -104,7 +104,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <a href="{{ route('softDelete.delete', $item->id) }}" class="btn btn-danger">Delete</a>
-                                                        </form>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

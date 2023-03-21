@@ -17,7 +17,7 @@
                                 </ul>
                             </div><!-- /.col -->
                             <div class="item_2">
-                                @if (count($banners) <= 1)
+                                @if (count($banners) <= 0)
                                 <a class="btn btn-primary" href="{{ route('banner.create') }}">Add New Banner</a>
                                 @endif
                             </div>

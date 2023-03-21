@@ -166,7 +166,7 @@
                                 <p>Division<i class="fas fa-angle-left right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item innerItem">
+                                <li class="nav-item">
                                     <a href="{{ route('division.index') }}" class="nav-link @yield('alldivisionActive')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Division</p>
@@ -174,7 +174,7 @@
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item innerItem">
+                                <li class="nav-item">
                                     <a href="{{ route('division.create') }}" class="nav-link @yield('adddivisionActive')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add New Division</p>
@@ -188,7 +188,7 @@
                                 <p>District<i class="fas fa-angle-left right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item innerItem">
+                                <li class="nav-item">
                                     <a href="{{ route('district.index') }}" class="nav-link @yield('alldistrictActive')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>District</p>
@@ -196,7 +196,7 @@
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item innerItem">
+                                <li class="nav-item">
                                     <a href="{{ route('district.create') }}" class="nav-link @yield('adddistrictActive')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add New District</p>
@@ -210,7 +210,7 @@
                                 <p>State<i class="fas fa-angle-left right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item innerItem">
+                                <li class="nav-item">
                                     <a href="{{ route('state.index') }}" class="nav-link @yield('allstateActive')">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>State</p>
@@ -220,6 +220,37 @@
                         </li>
                     </ul>
                 </li>
+
+                {{-- <li class="nav-item @yield('shoppingArea')">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>Shopping Area<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview menuRight">
+                        <li class="nav-item miniIcon @yield('division')">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fab fa-discourse"></i>
+                                <p>Division<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('division.index') }}" class="nav-link @yield('alldivisionActive')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Division</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('division.create') }}" class="nav-link @yield('adddivisionActive')">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add New Division</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li> --}}
 
                 <li class="nav-item @yield('Order')">
                     <a href="#" class="nav-link">

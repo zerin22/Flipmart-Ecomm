@@ -67,23 +67,23 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Admin Profile</h4>
+                                            {{-- {{ Auth::user()->relationWithAdminBio}} --}}
                                         </div>
                                         <div class="col-sm-6 ">
-                                            <a href="#" data-toggle="modal" data-target="#exampleModal__{{ $adminBio->id }}"><i class="fas fa-edit"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#exampleModal__{{ Auth::user()->id }}"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </div>
 
                                 </div>
 
-
                                 <div class="card-body">
                                     <div class="profile_name">
                                         <p><strong>Admin Bio</strong></p>
-                                        <p>{!! $adminBio->bio !!}</p>
+                                        <p>{!! Auth::user()->relationWithAdminBio->bio !!}</p>
                                     </div>
 
                                     <div class="profile_name">
-                                        <p><strong>Company Name: </strong>{{ $adminBio->company_name }}</p>
+                                        <p><strong>Company Name: </strong>{{ Auth::user()->relationWithAdminBio->company_name }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +128,6 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-warning">Save</button>
-
                         </div>
                     </form>
                 </div>
@@ -136,7 +135,7 @@
         </div>
 
         <!--Edit Bio Modal -->
-        <div class="modal fade" id="exampleModal__{{ $adminBio->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {{-- <div class="modal fade" id="exampleModal__{{ Auth::user()->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header ">
@@ -174,7 +173,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 @endsection

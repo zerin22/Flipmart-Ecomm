@@ -17,9 +17,9 @@ class AdminController extends Controller
    }
 
    public function adminProfileShow(){
-    $adminBio = AdminBio::first();
-    return view('admin.profile', compact('adminBio'));
-    //    return view('admin.profile');
+    // $adminBios = User::all();
+    // return view('admin.profile', compact('adminBios'));
+       return view('admin.profile');
    }
 
     // admin name settings  start

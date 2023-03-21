@@ -168,7 +168,7 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
     Route::get("/user/userUnBanned/{unbanned_id}", [RoleController::class, 'userUnBanned'])->name("user.unbanned");
     Route::get("/user/adminRoleChange/{admin_role_change_id}", [RoleController::class, 'adminRoleChange'])->name("admin.role.change");
     Route::get("/user/userRleChange/{role_change_id}", [RoleController::class, 'userRoleChange'])->name("user.role.change");
-    Route::get("/user/delete/{id}", [RoleController::class, 'userDelete'])->name("user.delete");
+    Route::get("/user/delete/{id}", [RoleController::class, 'userDelete'])->name('user.delete');
 
     // review
     Route::get("/review", [AdminReviewController::class, 'index'])->name("review.index");

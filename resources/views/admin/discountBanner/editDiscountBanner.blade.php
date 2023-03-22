@@ -8,11 +8,11 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-10 m-auto">
+                <div class="col-md-8 m-auto">
                     <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                         <div class="item_1">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('banner.index') }}">Discount Banner</a></li>
                                 <li class="breadcrumb-item active">Update Banner</li>
                             </ul>
                         </div>
@@ -43,7 +43,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit"  name="submit" value="Update" class="btn btn-success">
+                                    <input type="submit"  name="submit" value="Update" class="btn btn-warning custom_lg_btn">
                                 </div>
                             </form>
                         </div>

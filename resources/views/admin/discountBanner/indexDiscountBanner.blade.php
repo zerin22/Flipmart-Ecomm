@@ -46,9 +46,18 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td><img width="200px" height="150px" src="{{ asset($banner->image_left)  }}" alt=""></td>
                                     <td>
-                                        <span class="d-flex justify-content-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('banner.edit', $banner->id) }}">Edit</a>
+
+                                            </div>
+                                        </div>
+                                        {{-- <span class="d-flex justify-content-center">
                                             <a href=" {{ route('banner.edit', $banner->id) }} " class="btn btn-info">Edit</a>
-                                        </span>
+                                        </span> --}}
                                     </td>
                                 </tr>
                             @endforeach

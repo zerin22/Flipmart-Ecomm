@@ -43,6 +43,10 @@ class CreateOrdersTable extends Migration
             $table->string('return_date')->nullable();
             $table->string('return_reason')->nullable();
             $table->string('status');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
+            // $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
+            // $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
             $table->timestamps();
         });
     }

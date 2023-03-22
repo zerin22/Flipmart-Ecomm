@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('auth_id');
             $table->string('company_name')->nullable();
             $table->longText('bio')->nullable();
-            // $table->longText('option')->nullable();
             $table->foreign('auth_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

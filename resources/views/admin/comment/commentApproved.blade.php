@@ -60,9 +60,18 @@
                                             <span class="badge badge-success" >{{ $item->status }}</span>
                                         </td>
                                         <td>
-                                            {{-- <button data-id="{{$item->id }}" class="btn btn-danger commentsDeleteButton">Delete</button> --}}
-                                            <a href="{{ route('adminComments.replay',$item->id) }}" class="btn btn-info mr-3">Replay</a>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                 Action
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a href="{{ route('adminComments.replay',$item->id) }}"  class="dropdown-item">Edit</a>
+                                                    <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
+                                                </div>
+                                            </div>
+
+                                            {{-- <a href="{{ route('adminComments.replay',$item->id) }}" class="btn btn-info mr-3">Replay</a>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button> --}}
 
                                             <!-- Modal For Delete -->
                                             <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

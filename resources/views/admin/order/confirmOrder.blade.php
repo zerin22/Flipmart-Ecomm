@@ -14,7 +14,7 @@
                         <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                             <div class="item_1">
                                 <ul class="breadcrumb">
-                                    {{-- <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboars</a></li> --}}
+                                    <li class="breadcrumb-item"><a href="{{ route('order.pending') }}">Pending Order</a></li>
                                     <li class="breadcrumb-item active">Confirm Order</li>
                                 </ul>
                             </div>
@@ -60,12 +60,10 @@
                         </table>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
-@endsection()
+@endsection
 
 
 @section('scripts')

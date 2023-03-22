@@ -41,6 +41,14 @@
             transition:all .2s ease-in-out;
         }
 
+        input.btn.btn-warning.custom_lg_btn {
+            padding: 4px 23px;
+            font-size: 20px;
+        }
+        .card-header h4 {
+            margin: 0 !important;
+            font-size: 22px !important;
+        }
         .multi_img {
             position: relative;
 

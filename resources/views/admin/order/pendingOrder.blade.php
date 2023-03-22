@@ -68,7 +68,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-@endsection()
+@endsection
 
 
 @section('scripts')

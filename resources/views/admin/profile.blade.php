@@ -79,11 +79,11 @@
                                 <div class="card-body">
                                     <div class="profile_name">
                                         <p><strong>Admin Bio</strong></p>
-                                        <p>{!! Auth::user()->relationWithAdminBio->bio !!}</p>
+                                        <p>{!! Auth::user()->relationWithAdminBio->bio ?? '' !!}</p>
                                     </div>
 
                                     <div class="profile_name">
-                                        <p><strong>Company Name: </strong>{{ Auth::user()->relationWithAdminBio->company_name }}</p>
+                                        <p><strong>Company Name: </strong>{{ Auth::user()->relationWithAdminBio->company_name ?? '' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-warning">Save</button>
+                            <button type="submit" class="btn btn-update">Save</button>
                         </div>
                     </form>
                 </div>
@@ -135,7 +135,7 @@
         </div>
 
         <!--Edit Bio Modal -->
-        {{-- <div class="modal fade" id="exampleModal__{{ Auth::user()->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal__{{ Auth::user()->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header ">
@@ -145,13 +145,13 @@
                         </button>
                     </div>
 
-                    <form action="{{ route('bio.update', $adminBio->id) }}" method="POST">
+                    <form action="{{ route('bio.update', Auth::user()->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Company Name</label>
-                                <input type="text"  class="form-control" value="{{ $adminBio->company_name }}" name="company_name" placeholder="Company Name">
+                                <input type="text"  class="form-control" value="{{ Auth::user()->relationWithAdminBio->company_name }}" name="company_name" placeholder="Company Name">
                                 @error('company_name')
                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                 @enderror
@@ -159,7 +159,7 @@
 
                             <div class="form-group">
                                 <label>Bio</label>
-                                <textarea class="form-control" id="editorBio__1" name="bio" placeholder="Example...">{{ $adminBio->bio }}</textarea>
+                                <textarea class="form-control" id="editorBio__1" name="bio" placeholder="Example...">{{ Auth::user()->relationWithAdminBio->bio }}</textarea>
                                 @error('bio')
                                     <p class="text-danger font-weight-bold">{{ $message }}</p>
                                 @enderror
@@ -168,12 +168,12 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-warning">Update</button>
+                            <button type="submit" class="btn btn-success">Update</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 
 @endsection

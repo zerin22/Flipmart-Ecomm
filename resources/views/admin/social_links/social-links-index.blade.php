@@ -18,7 +18,7 @@
 
                             <div class="item_2">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                    Add Social Links
+                                    Add New Social Links
                                 </button>
                             </div>
                         </div>

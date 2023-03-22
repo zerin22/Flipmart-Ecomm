@@ -297,10 +297,15 @@
                                 <div class="multiple_img_section" style="border-top:1px solid #ddd; margin-top: 50px">
                                     <div class="row no-gutters" style="margin-top: 50px">
                                         <div class="col-md-4">
-                                            <h2 style="font-size:20px; font-weight:700;margin-bottom:20px; text-align:center">Product Thumbnail</h2>
+                                            <h2 style="font-size: 20px;
+                                            font-weight: 700;
+                                            margin-bottom: 20px;
+                                            background: #dddddd36;
+                                            padding: 10px;
+                                            border-radius: 4px">Product Thumbnail</h2>
                                             <form action="{{ route('single-Image', ['id' => $products->id ]) }}" method="post" enctype="multipart/form-data">
                                                 @csrf
-                                                <div class="card p-3" style="margin-right: 30px; margin-left:15px">
+                                                <div class="card p-3">
                                                     <img width="100%" height="100%" id="single_img" src="{{ asset($products->product_thumbnail) }}" alt="">
                                                     <div class="card-body">
                                                         <div class="card-body mt-2">
@@ -318,8 +323,14 @@
                                             </form>
                                         </div>
                                         <div class="col-md-8">
-                                            <div class="multipleSection" style="border-left: 2px solid red; padding-left:30px">
-                                                <h2 style="font-size:20px; font-weight:700;margin-bottom:20px; text-align:center">Product Multiple Image</h2>
+                                            <div class="multipleSection" style="padding-left:30px">
+                                                <h2 style="font-size: 20px;
+                                                font-weight: 700;
+                                                margin-bottom: 20px;
+                                                background: #dddddd36;
+                                                padding: 10px;
+                                                border-radius: 4px;
+                                            }">Product Multiple Image</h2>
                                                 <form action="{{ route('edit-multipleImage') }}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="row">

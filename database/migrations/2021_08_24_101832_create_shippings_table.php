@@ -25,6 +25,7 @@ class CreateShippingsTable extends Migration
             $table->integer('postCode');
             $table->string('shipping_address');
             $table->string('payment_method');
+            $table->foreign('authID')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

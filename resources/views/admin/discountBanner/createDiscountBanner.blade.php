@@ -42,7 +42,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit"  name="submit" value="Save" class="btn btn-success">
+                                    <input type="submit"  name="submit" value="Save" class="btn btn-warning custom_lg_btn">
                                 </div>
                             </form>
                         </div>

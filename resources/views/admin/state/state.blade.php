@@ -48,18 +48,32 @@
                                     </td>
                                     <td>{{ $item->state_name }}</td>
                                     <td>
-                                        @if( $item->status == 1 )
-                                            <a href="{{ route('state.active', ['id' => $item->id]) }}" class="btn btn-success">Active</a>
+                                        @if( $item->status == 1)
+                                            <span class="badge badge-fill badge-success">Active</span>
                                         @else
-                                            <a href="{{ route('state.inactive', ['id' => $item->id]) }}"  class="btn btn-warning">Inactive</a>
+                                            <span class="badge badge-fill badge-danger">Inactive</span>
                                         @endif
                                     </td>
                                     <td>
-                                        <span class="d-flex justify-content-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                            @if( $item->status == 1 )
+                                                <a href="{{ route('state.active', ['id' => $item->id]) }}" class="dropdown-item">Inactive</a>
+                                            @else
+                                                <a href="{{ route('state.inactive', ['id' => $item->id]) }}"  class="dropdown-item">Active</a>
+                                            @endif
+                                              <a class="dropdown-item" href="{{ route('state.edit', $item->id) }}">Edit</a>
+                                              <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
+                                            </div>
+                                        </div>
+                                        {{-- <span class="d-flex justify-content-center">
                                             <a href=" {{ route('state.edit', $item->id) }} " class="btn btn-info mr-3">Edit</a>
 
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button>
-                                        </span>
+                                        </span> --}}
 
                                         <!-- Modal For Delete -->
                                         <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -78,7 +92,7 @@
                                                         <form action="{{ route('state.destroy', $item->id) }}" method="POST" >
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="submit" class="btn btn-warning custom_lg_btn">Delete</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -133,7 +147,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="submit" name="submit" value="Save" class="btn btn-success">
+                                        <input type="submit" name="submit" value="Save" class="btn btn-warning custom_lg_btn">
                                     </div>
                                 </form>
                             </div>

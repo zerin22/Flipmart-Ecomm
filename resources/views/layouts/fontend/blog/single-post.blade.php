@@ -130,7 +130,7 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    @if(Auth::check())
+                                    @if((Auth::check()) && (Auth::user()->role_id != 1) )
                                     <form class="register-form" role="form" action="{{ route('blog.comment.store') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="blog_id" value="{{ $blog->id }}">

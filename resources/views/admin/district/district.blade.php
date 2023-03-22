@@ -51,17 +51,36 @@
                                     <td>{{ $item->division->division_name }}</td>
                                     <td>{{ $item->district_name }} <span style="color:red; font-weight:700">({{ $item->state->count() }})State Available</span></td>
                                     <td>
-                                        @if( $item->status == 1 )
+                                        @if( $item->status == 1)
+                                            <span class="badge badge-fill badge-success">Active</span>
+                                        @else
+                                            <span class="badge badge-fill badge-danger">Inactive</span>
+                                        @endif
+                                        {{-- @if( $item->status == 1 )
                                             <a href="{{ route('district.active', ['id' => $item->id]) }}" class="btn btn-success">Active</a>
                                         @else
                                             <a href="{{ route('district.inactive', ['id' => $item->id]) }}"  class="btn btn-warning">Inactive</a>
-                                        @endif
+                                        @endif --}}
                                     </td>
                                     <td>
-                                        <span class="d-flex justify-content-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                            @if( $item->status == 1 )
+                                                <a href="{{ route('district.active', ['id' => $item->id]) }}" class="dropdown-item">Inactive</a>
+                                            @else
+                                                <a href="{{ route('district.inactive', ['id' => $item->id]) }}"  class="dropdown-item">Active</a>
+                                            @endif
+                                              <a class="dropdown-item" href="{{ route('district.edit', $item->id) }}">Edit</a>
+                                              <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
+                                            </div>
+                                        </div>
+                                        {{-- <span class="d-flex justify-content-center">
                                         <a href=" {{ route('district.edit', $item->id) }} " class="btn btn-info mr-3">Edit</a>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button>
-                                        </span>
+                                        </span> --}}
 
                                         <!-- Modal For Delete -->
                                         <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

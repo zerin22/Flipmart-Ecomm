@@ -50,10 +50,19 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <span class="d-flex justify-content-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('subCategory.edit', $item->id) }}">Edit</a>
+                                                <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</a>
+                                            </div>
+                                        </div>
+                                        {{-- <span class="d-flex justify-content-center">
                                             <a href="{{ route('subCategory.edit', $item->id) }}" class="btn btn-info mr-3 ">Edit</a>
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button>
-                                        </span>
+                                        </span> --}}
 
                                         <!-- Modal For Delete -->
                                         <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,7 +132,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="submit"  name="submit" value="Save" class="btn btn-success">
+                                        <input type="submit"  name="submit" value="Save" class="btn btn-warning custom_lg_btn">
                                     </div>
                                 </form>
                             </div>

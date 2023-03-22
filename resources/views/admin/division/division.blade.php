@@ -49,17 +49,31 @@
                                     <td>{{ $i++ }}</td>
                                     <td>{{ $item->division_name }}  <span style="color:red; font-weight:700">({{ $item->district->count() }}) District available</span></td>
                                     <td>
-                                        @if( $item->status == 1 )
-                                            <a href="{{ route('division.active', ['id' => $item->id]) }}" class="btn btn-success">Active</a>
+                                        @if( $item->status == 1)
+                                            <span class="badge badge-fill badge-success">Active</span>
                                         @else
-                                            <a href="{{ route('division.inactive', ['id' => $item->id]) }}"  class="btn btn-warning">Inactive</a>
+                                            <span class="badge badge-fill badge-danger">InActive</span>
                                         @endif
-                                    </td>
                                     <td>
-                                        <span class="d-flex justify-content-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                            @if( $item->status == 1 )
+                                                <a href="{{ route('division.active', ['id' => $item->id]) }}" class="dropdown-item">Inactive</a>
+                                            @else
+                                                <a href="{{ route('division.inactive', ['id' => $item->id]) }}"  class="dropdown-item">Active</a>
+                                            @endif
+                                              <a class="dropdown-item" href="{{ route('division.edit', $item->id) }}">Edit</a>
+                                              <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
+                                            </div>
+                                        </div>
+
+                                        {{-- <span class="d-flex justify-content-center">
                                             <a href=" {{ route('division.edit', $item->id) }} " class="btn btn-info mr-3">Edit</a>
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button>
-                                        </span>
+                                        </span> --}}
 
                                         <!-- Modal For Delete -->
                                         <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

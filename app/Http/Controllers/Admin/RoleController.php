@@ -35,11 +35,11 @@ class RoleController extends Controller
      }
 
      public function userDelete($id){
-         $image = User::findOrFail($id);
-         if(file_exists($image->image)){
-             unlink($image->image);
+         $user = User::findOrFail($id);
+         if(file_exists($user->image)){
+             unlink($user->image);
          }
-         $image->delete();
+         $user->delete();
          return redirect()->back()->with('success', 'User Delete Successfully');
      }
 

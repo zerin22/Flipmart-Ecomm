@@ -44,6 +44,7 @@
     <script src="https://js.stripe.com/v3/"></script>
     <style>
 
+
         .profile_section {
             margin:100px 0px;
 
@@ -59,7 +60,9 @@
             border: 1px solid #fff;
             padding:50px 0px;
         }
-
+        a.dropdown-item.deleteBtn {
+            cursor: pointer;
+        }
 
         .user-profile-image img {
             width:200px;
@@ -218,7 +221,7 @@
                 <div class="cnt-account">
                     <ul class="list-unstyled">
                         @auth
-                            @if(Auth::user()->role_id != 1)
+                            @if(Auth::user()->role_id == 2)
                                 <li><a href="{{ url('wishListPageView') }}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                                 <li><a href="{{ route('cart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                                 <li>
@@ -231,10 +234,8 @@
                                     </a>
                                 </li>
                             @endif
-                        @endauth
 
-                        @auth
-                            @if(Auth::user()->role_id != 2)
+                            @if(Auth::user()->role_id == 1)
                                 <li>
                                     <a href="{{ route('admin.dashboard') }}"><i class="icon fa fa-user"></i>
                                         @if(session()->get('language') == 'bangle')

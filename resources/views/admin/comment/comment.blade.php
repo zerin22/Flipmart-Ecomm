@@ -50,13 +50,26 @@
                                         <span class="badge badge-success" >{{ $item->status }}</span>
                                     </td>
                                     <td>
-                                        @if( $item->status == 'pending' )
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                            @if( $item->status == 'pending' )
+                                                <a href="{{ route('comments.approved', ['id' => $item->id]) }}" class="dropdown-item">Approved</a>
+                                            @else
+                                                <a href="{{ route('comments.pending', ['id' => $item->id]) }}"  class="dropdown-item">Pending</a>
+                                            @endif
+                                              <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
+                                            </div>
+                                        </div>
+                                        {{-- @if( $item->status == 'pending' )
                                             <a href="{{ route('comments.approved', $item->id )}}" class="btn btn-info mr-3">Approved</a>
                                         @else
                                             <a href="{{ route('comments.pending', $item->id )}}" class="btn btn-warning mr-3">Pending</a>
                                         @endif
 
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button> --}}
 
                                         <!-- Modal For Delete -->
                                         <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

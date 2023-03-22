@@ -9,7 +9,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                    <div class="col-md-8 m-auto">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('brands.index') }}">Brand</a></li>
                             <li class="breadcrumb-item active">Update Brand</li>
@@ -24,7 +24,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-8 m-auto">
-                        <div class="card">
+                        <div class="card  card-warning">
                             <div class="card-header">
                                 <h4>Update Brand</h4>
                             </div>
@@ -57,7 +57,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit"  name="submit" value="Update" class="btn btn-success">
+                                        <input type="submit"  name="submit" value="Update" class="btn btn-warning custom_lg_btn">
                                     </div>
                                 </form>
                             </div>

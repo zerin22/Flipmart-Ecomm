@@ -129,7 +129,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate([
             "category_id" => "required",
             "subcategory_id" => "required",
@@ -277,16 +276,17 @@ class ProductController extends Controller
          MultiImage::findOrFail($id)->delete();
          return redirect()->back()->with('success', 'Product Thumbnail Delete Successfully');
     }
-    // Products softDelete
 
-    public function  ProductSoftDelete($id){
+    // Products softDelete
+    public function  ProductSoftDelete($id)
+    {
+        MultiImage::where('product_id', $id)->delete();
         Product::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Product Delete Successfully');
     }
 
 
     // active and inactive
-
     public function inactive($id){
         Product::findOrFail($id)->update(['status' => 0]);
         return redirect()->back()->with('success', 'Product Inactive');

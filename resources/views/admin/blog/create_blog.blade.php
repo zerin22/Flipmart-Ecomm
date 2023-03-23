@@ -43,7 +43,7 @@
 
                                 <div class="form-group">
                                     <label>Blog Slug</label>
-                                    <input type="text" id="slug" class="form-control" value="{{ old('slug') }}" name="slug" placeholder="Slug">
+                                    <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" name="slug" placeholder="Slug">
                                     @error('slug')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                     @enderror
@@ -74,7 +74,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit"  name="submit" value="Save" class="btn btn-success">
+                                    <input type="submit"  name="submit" value="Save" class="btn btn-warning custom_lg_btn">
                                 </div>
                             </form>
                         </div>

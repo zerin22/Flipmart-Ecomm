@@ -98,7 +98,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('select[name="category_id"]').on('change', function(){
-        toastr.error("Somthing Wrong! Please try again");
             var category_id = $(this).val();
             if(category_id) {
                 $.ajax({

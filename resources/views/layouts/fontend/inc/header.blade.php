@@ -60,9 +60,6 @@
             border: 1px solid #fff;
             padding:50px 0px;
         }
-        a.dropdown-item.deleteBtn {
-            cursor: pointer;
-        }
 
         .user-profile-image img {
             width:200px;

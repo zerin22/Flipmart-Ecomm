@@ -27,7 +27,7 @@
                     <div class="col-md-10 m-auto">
                         <div class="card card-warning">
                             <div class="card-header">
-                                <h3 class="card-title">{{ $blog->title }}</h3>
+                                <h4>{{ $blog->title }}</h4>
                             </div>
                             <div class="card-body p-5">
                                 <table class="table table-bordered p-3">

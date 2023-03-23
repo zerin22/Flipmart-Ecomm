@@ -41,10 +41,21 @@
             transition:all .2s ease-in-out;
         }
 
+        .badge-color{
+            /* color: #ebeef0; */
+            color: #ffff;
+            background-color: #FD2391;
+        }
+
         input.btn.btn-warning.custom_lg_btn {
             padding: 4px 23px;
             font-size: 20px;
         }
+
+        a.dropdown-item.deleteBtn {
+            cursor: pointer;
+        }
+
         .card-header h4 {
             margin: 0 !important;
             font-size: 22px !important;

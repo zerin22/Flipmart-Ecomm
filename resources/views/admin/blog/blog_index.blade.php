@@ -3,7 +3,7 @@
 @section('blog')menu-is-opening menu-open @endsection
 @section('allBlogActive') active @endsection
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
+
     <div class="content-wrapper">
 
         <div class="content-header">
@@ -60,13 +60,16 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <span class="d-flex justify-content-center">
-                                            <a href="{{ route('blog.show', $blog->id) }}" class="btn btn-warning mr-3">View</a>
-                                            <a href="{{ route('blog.edit',  $blog->id) }}" class="btn btn-info mr-3">Edit</a>
-
-                                                {{-- <button type="submit" onclick="return confirm('Are you sure to delete this item?')" class="btn btn-danger">Delete</button> --}}
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $blog->id }}">Delete</button>
-                                        </span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('blog.show', $blog->id) }}">View</a>
+                                                <a class="dropdown-item" href="{{ route('blog.edit', $blog->id) }}">Edit</a>
+                                                <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $blog->id }}" >Delete</a>
+                                            </div>
+                                        </div>
 
                                         <!-- Modal For Delete -->
                                         <div class="modal fade" id="exampleModal__{{ $blog->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -98,18 +101,18 @@
                         </table>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 @endsection
 
 
 @section('scripts')
+
     <script type="text/javascript">
         $(document).ready( function () {
             $('#table_id').DataTable();
         } );
     </script>
+
 @endsection

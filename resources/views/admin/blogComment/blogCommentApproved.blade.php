@@ -50,10 +50,20 @@
                                     </td>
 
                                     <td>
-                                        <span class="d-flex justify-content-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a href="{{ route('blogcomment.pending', $blogCommentsApprove->id ) }}"  class="dropdown-item">Pending</a>
+                                                <a class="dropdown-item" href="{{ route('blogcomments.replay',$blogCommentsApprove->id) }}">Reply</a>
+                                                <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $blogCommentsApprove->id }}" >Delete</a>
+                                            </div>
+                                        </div>
+                                        {{-- <span class="d-flex justify-content-center">
                                             <a href="{{ route('blogcomments.replay',$blogCommentsApprove->id) }}" class="btn btn-warning mr-3">Reply</a>
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $blogCommentsApprove->id }}">Delete</button>
-                                        </span>
+                                        </span> --}}
 
                                         <!-- Modal For Delete -->
                                         <div class="modal fade" id="exampleModal__{{ $blogCommentsApprove->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

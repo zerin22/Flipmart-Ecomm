@@ -49,33 +49,43 @@
                                     <td>{{ $item->product_qty }}</td>
                                     <td>{{ $item->selling_price }}</td>
                                     <td>
-                                        {{-- <a onclick="return confirm('Are you sure to restore this item?');" href="{{ route('product.restore', [ 'id' => $item->id])}}" class="btn btn-info mb-2">Re-store</a> --}}
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                             Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                              <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModalRestore__{{ $item->id }}">Re-store</a>
 
-                                        <button type="button" class="btn btn-info mr-3" data-toggle="modal" data-target="#exampleModalRestore__{{ $item->id }}">Re-store</button>
+                                              <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</a>
+                                            </div>
+                                        </div>
+                                        <!-- Modal For Restore -->
+                                        <div class="modal fade" id="exampleModalRestore__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
 
-                                            <!-- Modal For Restore -->
-                                            <div class="modal fade" id="exampleModalRestore__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body">
+                                                        <span class=""><svg xmlns="http://www.w3.org/2000/svg" height="60" width="60" viewBox="0 0 24 24"><path fill="#fad383" d="M15.728,22H8.272a1.00014,1.00014,0,0,1-.707-.293l-5.272-5.272A1.00014,1.00014,0,0,1,2,15.728V8.272a1.00014,1.00014,0,0,1,.293-.707l5.272-5.272A1.00014,1.00014,0,0,1,8.272,2H15.728a1.00014,1.00014,0,0,1,.707.293l5.272,5.272A1.00014,1.00014,0,0,1,22,8.272V15.728a1.00014,1.00014,0,0,1-.293.707l-5.272,5.272A1.00014,1.00014,0,0,1,15.728,22Z"></path><circle cx="12" cy="16" r="1" fill="#f7b731"></circle><path fill="#f7b731" d="M12,13a1,1,0,0,1-1-1V8a1,1,0,0,1,2,0v4A1,1,0,0,1,12,13Z"></path></svg></span>
+                                                        <h4 class="h4 mb-0 mt-3" style="color: #f7d307">Re-Store</h4>
+                                                        <p class="card-text">Are you sure, you want to restore data?</p>
 
-                                                            <span class=""><svg xmlns="http://www.w3.org/2000/svg" height="60" width="60" viewBox="0 0 24 24"><path fill="#fad383" d="M15.728,22H8.272a1.00014,1.00014,0,0,1-.707-.293l-5.272-5.272A1.00014,1.00014,0,0,1,2,15.728V8.272a1.00014,1.00014,0,0,1,.293-.707l5.272-5.272A1.00014,1.00014,0,0,1,8.272,2H15.728a1.00014,1.00014,0,0,1,.707.293l5.272,5.272A1.00014,1.00014,0,0,1,22,8.272V15.728a1.00014,1.00014,0,0,1-.293.707l-5.272,5.272A1.00014,1.00014,0,0,1,15.728,22Z"></path><circle cx="12" cy="16" r="1" fill="#f7b731"></circle><path fill="#f7b731" d="M12,13a1,1,0,0,1-1-1V8a1,1,0,0,1,2,0v4A1,1,0,0,1,12,13Z"></path></svg></span>
-                                                            <h4 class="h4 mb-0 mt-3" style="color: #f7d307">Re-Store</h4>
-                                                            <p class="card-text">Are you sure, you want to restore data?</p>
+                                                    </div>
 
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <a href="{{ route('product.restore', [ 'id' => $item->id])}}" class="btn btn-warning">Yes</a>
-                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <a href="{{ route('product.restore', [ 'id' => $item->id])}}" class="btn btn-warning">Yes</a>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                        {{-- <a href="{{ route('product.permanentDelete', [ 'id' => $item->id])}}" onclick="return confirm('Are you sure Permanent delete this item?')"  class="btn btn-danger">Permanent-Delete</a> --}}
+                                        {{-- <a onclick="return confirm('Are you sure to restore this item?');" href="{{ route('product.restore', [ 'id' => $item->id])}}" class="btn btn-info mb-2">Re-store</a>
 
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button>
+                                        <button type="button" class="btn btn-info mr-3" data-toggle="modal" data-target="#exampleModalRestore__{{ $item->id }}">Re-store</button>
+
+                                        <a href="{{ route('product.permanentDelete', [ 'id' => $item->id])}}" onclick="return confirm('Are you sure Permanent delete this item?')"  class="btn btn-danger">Permanent-Delete</a>
+
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button> --}}
 
 
                                         <!-- Modal For Delete -->

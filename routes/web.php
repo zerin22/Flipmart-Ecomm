@@ -71,7 +71,7 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
 
     // =================== Store Room All route ===================================
     Route::get('/store/room/', [StoreRoomController::class, 'StoreRoomView'])->name('brand.storeRoom');
-    Route::get('/brand/permanentDelete/{id}', [StoreRoomController::class, 'brandPermanentDelete']);
+    Route::get('/brand/permanentDelete/{id}', [StoreRoomController::class, 'brandPermanentDelete'])->name('brand.permanentDelete');
     Route::get('/brand/restore/{id}', [StoreRoomController::class, 'brandRestore'])->name('brand.restore');
     // multiple image store
     Route::get('multipleImage/storeRoom', [StoreRoomController::class, 'StoreRoomController'])->name('products.storeroom');

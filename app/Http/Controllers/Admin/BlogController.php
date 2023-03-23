@@ -54,6 +54,7 @@ class BlogController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'slug' => 'required',
             'thumbnail_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'feature_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'description' => 'required',
@@ -156,7 +157,7 @@ class BlogController extends Controller
     public function destroy($id)
     {
         $blog = Blog::findOrFail($id);
-        // unlink($blog->thumbnail_image);
+        unlink($blog->thumbnail_image);
         unlink($blog->feature_image);
         $blog->delete();
         return redirect()-> back()->with('success', 'Blog deleted success');

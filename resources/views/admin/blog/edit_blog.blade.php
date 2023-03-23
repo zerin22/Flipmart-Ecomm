@@ -77,18 +77,16 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit"  name="submit" value="Update" class="btn btn-success">
+                                    <input type="submit"  name="submit" value="Update" class="btn btn-warning custom_lg_btn">
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
 @endsection
 
 @section('scripts')
@@ -96,5 +94,6 @@
     <script type="text/javascript">
         CKEDITOR.replace( 'editorBlog' );
     </script>
+
 @endsection
 

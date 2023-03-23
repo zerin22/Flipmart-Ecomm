@@ -47,7 +47,7 @@
                                     </td>
                                     <td>{{ $item->description }}</td>
                                     <td>
-                                        <span class="badge badge-success" >{{ $item->status }}</span>
+                                        <span class="badge badge-color" >{{ $item->status }}</span>
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -57,8 +57,8 @@
                                             <div class="dropdown-menu">
                                             @if( $item->status == 'pending' )
                                                 <a href="{{ route('comments.approved', ['id' => $item->id]) }}" class="dropdown-item">Approved</a>
-                                            @else
-                                                <a href="{{ route('comments.pending', ['id' => $item->id]) }}"  class="dropdown-item">Pending</a>
+                                            {{-- @else
+                                                <a href="{{ route('comments.pending', ['id' => $item->id]) }}"  class="dropdown-item">Pending</a> --}}
                                             @endif
                                               <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
                                             </div>

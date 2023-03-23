@@ -6,9 +6,9 @@
 
     <div class="content-wrapper">
         <div class="content-header">
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding: 0px 100px">
                 <div class="row">
-                    <div class="col-md-10 m-auto">
+                    <div class="col-md-12 m-auto">
                         <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                             <div class="item_1">
                                 <ul class="breadcrumb">
@@ -23,25 +23,23 @@
         </div>
 
         <section class="content">
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding: 0px 100px">
                 <div class="row">
-                    <div class="col-md-10 m-auto">
-                        @if ($multiImageTrashCount <= 0)
-                            <p style="color:red; font-weight:700; font-size:20px">No Data Found</p>
-                        @else
-                            @foreach($multiImageTrash as $item)
-                                <div class="col-md-3">
-                                    <div class="card p-4">
-                                        <img width="100%" height="100%" src="{{ asset($item->photo_name) }}" alt="">
-                                        <div class="card-body text-center">
-                                            <a onclick="return confirm('are you sure to restore this item?'); " href="{{ route('multiImage.restore', ['id' => $item->id])  }}" class="btn btn-warning mr-3">Re-Store</a>
-                                            <a onclick="return confirm('are you sure to permanently delete this item?'); " href="{{ route('multipleImage.premanentDelete', ['id' => $item->id]) }}" class="btn btn-danger">Permanent Delete</a>
-                                        </div>
-                                    </div>
+                    @if ($multiImageTrashCount <= 0)
+                        <p style="color:red; font-weight:700; font-size:20px">No Data Found</p>
+                    @else
+                        @foreach($multiImageTrash as $item)
+                            <div class="col-md-3">
+                                <div class="card p-4">
+                                    <img width="100%" height="100%" src="{{ asset($item->photo_name) }}" alt="">
+                                    {{-- <div class="card-body text-center">
+                                        <a onclick="return confirm('are you sure to restore this item?'); " href="{{ route('multiImage.restore', ['id' => $item->id])  }}" class="btn btn-warning mr-3">Re-Store</a>
+                                        <a onclick="return confirm('are you sure to permanently delete this item?'); " href="{{ route('multipleImage.premanentDelete', ['id' => $item->id]) }}" class="btn btn-danger">Permanent Delete</a>
+                                    </div> --}}
                                 </div>
-                            @endforeach
-                        @endif
-                    </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </section>

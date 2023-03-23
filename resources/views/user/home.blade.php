@@ -13,7 +13,7 @@
                 <div class="profile-inner text-center" >
                     <div class="user-profile-image">
                         <div class="overlay"></div>
-                        <img id="img_id" src="{{ asset(Auth::user()->image) }}" alt="img">
+                        <img id="img_id" src="{{ (asset(Auth::user()->image)) ?? asset('backend/images/default/profile_img.png') }}" alt="img">
                         <input type="file" id="imageInput" class="profile_file">
 
                     </div>

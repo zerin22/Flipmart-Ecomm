@@ -65,13 +65,11 @@
                                                  Action
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a href="{{ route('adminComments.replay',$item->id) }}"  class="dropdown-item">Edit</a>
+                                                    <a href="{{ route('comments.pending', ['id' => $item->id]) }}"  class="dropdown-item">Pending</a>
+                                                    <a href="{{ route('adminComments.replay',$item->id) }}"  class="dropdown-item">Reply</a>
                                                     <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
                                                 </div>
                                             </div>
-
-                                            {{-- <a href="{{ route('adminComments.replay',$item->id) }}" class="btn btn-info mr-3">Replay</a>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button> --}}
 
                                             <!-- Modal For Delete -->
                                             <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

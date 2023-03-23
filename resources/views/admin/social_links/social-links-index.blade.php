@@ -50,11 +50,20 @@
                                         <td>{{ $socialLink->social_link }}</td>
                                         <td>{{ $socialLink->class_name }}</td>
                                         <td>
-                                            <span class="d-flex justify-content-center">
+
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                 Action
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $socialLink->id }}">Edit</a>
+                                                    <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModalDelete__{{ $socialLink->id }}">Delete</a>
+                                                </div>
+                                            {{-- <span class="d-flex justify-content-center">
                                                 <button type="button" class="btn btn-info mr-3" data-toggle="modal" data-target="#exampleModal__{{ $socialLink->id }}">Edit</button>
 
                                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete__{{ $socialLink->id }}">Delete</button>
-                                            </span>
+                                            </span> --}}
 
 
                                             <!-- Modal For Delete -->
@@ -86,8 +95,8 @@
                                     <!--Edit Social Link Modal -->
                                     <div class="modal fade" id="exampleModal__{{ $socialLink->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header ">
+                                            <div class="modal-content card card-warning">
+                                                <div class="modal-header card-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Update Social Link</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -126,7 +135,7 @@
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-success">Update</button>
+                                                        <button type="submit" class="btn btn btn-warning custom_lg_btn">Update</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -144,8 +153,8 @@
         <!--Add Social Link Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content card card-warning">
+                    <div class="modal-header card-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add Social Link</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -184,7 +193,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-warning custom_lg_btn">Save</button>
                         </div>
                     </form>
                 </div>

@@ -17,9 +17,9 @@ class AdminController extends Controller
    }
 
    public function adminProfileShow(){
-    // $adminBios = User::all();
-    // return view('admin.profile', compact('adminBios'));
-       return view('admin.profile');
+   $adminBios = AdminBio::where('auth_id', Auth::user()->id)->get();
+    return view('admin.profile', compact('adminBios'));
+    //    return view('admin.profile');
    }
 
     // admin name settings  start
@@ -81,37 +81,36 @@ class AdminController extends Controller
     }
 
     // image upload
+    // image upload
+    public function image_settings($image)
+    {
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $location = 'fontend/assets/images/upload/';
+        $final_image = $location.$name_gen;
+        Image::make($image)->resize(200, 200)->save($final_image);
+        return $final_image;
+    }
 
     public function photoUpload(Request $request){
         if(User::findOrFail(Auth::id())->image == 'fontend/assets/images/upload/profile_img.png'){
-            $image = $request->file('photo');
-            $name_gen = hexdec(uniqid());
-            $img_ext = strtolower($image->getClientOriginalExtension());
-            $img_name = $name_gen . '.' . $img_ext;
-            $upload_location = 'fontend/assets/images/upload/';
-            $last_image = $upload_location.$img_name;
-            Image::make($image)->resize(200, 200)->save($last_image);
+            $profileImage = $request->file('photo');
+            $image = $this->image_settings($profileImage);
             User::findOrFail(Auth::id())->Update([
-                'image' => $last_image,
+                'image' => $image,
             ]);
-            return redirect()->route('user.dashboard');
+            return redirect()->route('admin.dashboard');
         }else {
             $img = User::findOrFail(Auth::id());
             $old_image = $img->image;
             if(file_exists($old_image)){
                 unlink($old_image);
             }
-            $image = $request->file('photo');
-            $name_gen = hexdec(uniqid());
-            $img_ext = strtolower($image->getClientOriginalExtension());
-            $img_name = $name_gen . '.' . $img_ext;
-            $upload_location = 'fontend/assets/images/upload/';
-            $last_image = $upload_location.$img_name;
-            Image::make($image)->resize(200, 200)->save($last_image);
+            $profileImage = $request->file('photo');
+            $image = $this->image_settings($profileImage);
             User::findOrFail(Auth::id())->Update([
-                'image' => $last_image,
+                'image' => $image,
             ]);
-            return redirect()->route('user.dashboard');
+            return redirect()->route('admin.dashboard');
         }
     }
 

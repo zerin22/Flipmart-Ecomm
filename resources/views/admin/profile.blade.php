@@ -12,7 +12,7 @@
     <div class="content-wrapper">
 
         <div class="content-header">
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding: 0px 50px">
                 <div class="row">
                     <div class="col-sm-10">
                         <div class="breadrow d-flex justify-content-between mb-3 mt-4">
@@ -23,9 +23,11 @@
                                 </ul>
                             </div><!-- /.col -->
                             <div class="item_2">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                    Add Profile
-                                </button>
+                                @if (count($adminBios) <= 0)
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        Add Profile
+                                    </button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -61,13 +63,13 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-9 m-auto">
                             <div class="card card-warning">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h4>Admin Profile</h4>
-                                            {{-- {{ Auth::user()->relationWithAdminBio}} --}}
                                         </div>
                                         <div class="col-sm-6 ">
                                             <a href="#" data-toggle="modal" data-target="#exampleModal__{{ Auth::user()->id }}"><i class="fas fa-edit"></i></a>
@@ -93,11 +95,52 @@
             </div>
         </section>
 
+        <!--Edit Bio Modal -->
+        <div class="modal fade" id="exampleModal__{{ Auth::user()->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h5 class="modal-title" id="exampleModalLabel">Update profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="{{ route('bio.update', Auth::user()->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Company Name</label>
+                                <input type="text"  class="form-control" value="{{ Auth::user()->relationWithAdminBio->company_name ?? '' }}" name="company_name" placeholder="Company Name">
+                                @error('company_name')
+                                    <p class="text-danger font-weight-bold">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label>Bio</label>
+                                <textarea class="form-control" id="editorBio__1" name="bio" placeholder="Example...">{{ Auth::user()->relationWithAdminBio->bio ?? '' }}</textarea>
+                                @error('bio')
+                                    <p class="text-danger font-weight-bold">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <!--Add Bio Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content card card-warning">
+                    <div class="modal-header card-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add Profile</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -107,7 +150,6 @@
                     <form action="{{ route('bio.store') }}" method="POST">
                         @csrf
                         <div class="modal-body">
-
                             <div class="form-group">
                                 <label>Company Name</label>
                                 <input type="text"  class="form-control" value="{{ old('company_name') }}" name="company_name" placeholder="Company Name">
@@ -127,53 +169,14 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-update">Save</button>
+                            <button type="submit" class="btn btn-warning custom_lg_btn">Save</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!--Edit Bio Modal -->
-        <div class="modal fade" id="exampleModal__{{ Auth::user()->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header ">
-                        <h5 class="modal-title" id="exampleModalLabel">Update profile</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
 
-                    <form action="{{ route('bio.update', Auth::user()->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Company Name</label>
-                                <input type="text"  class="form-control" value="{{ Auth::user()->relationWithAdminBio->company_name }}" name="company_name" placeholder="Company Name">
-                                @error('company_name')
-                                    <p class="text-danger font-weight-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label>Bio</label>
-                                <textarea class="form-control" id="editorBio__1" name="bio" placeholder="Example...">{{ Auth::user()->relationWithAdminBio->bio }}</textarea>
-                                @error('bio')
-                                    <p class="text-danger font-weight-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Update</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 
 @endsection
@@ -230,6 +233,7 @@
                 let imgSrc = event.target.result;
                 $("#img_id").attr('src', imgSrc);
             }
+
             // img settings
             let photoFile = $("#imageInput").prop('files')[0];
             let formData = new FormData();
@@ -239,8 +243,6 @@
                 .then(function(response){
                     if(response.status===200){
                         toastr.success('Image Update Success');
-                    }else{
-                        toastr.error('Image Update Fail');
                     }
                 })
                 .catch(function(error){

@@ -31,7 +31,6 @@
                                     <input type="date" class="form-control" name="order_date">
                                     <button type="submit" class="btn btn-primary" style="margin-top:20px">Search</button>
                                 </form>
-
                             </div>
                         </div>
                     </div>
@@ -86,11 +85,9 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 @endsection
 
 

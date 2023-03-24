@@ -17,8 +17,7 @@ class AdminBioController extends Controller
      */
     public function index()
     {
-        // $adminBios = User::all();
-        // return view('admin.profile', compact('adminBios'));
+        //
     }
 
     /**

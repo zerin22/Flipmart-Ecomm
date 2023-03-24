@@ -13,9 +13,10 @@
                 <div class="profile-inner text-center" >
                     <div class="user-profile-image">
                         <div class="overlay"></div>
-                        <img id="img_id" src="{{ (asset(Auth::user()->image)) ?? asset('backend/images/default/profile_img.png') }}" alt="img">
-                        <input type="file" id="imageInput" class="profile_file">
-
+                        <form action="">
+                            <img id="img_id" src="{{ (asset(Auth::user()->image)) ?? asset('backend/images/default/profile_img.png') }}" alt="img">
+                            <input type="file" id="imageInput" class="profile_file">
+                        </form>
                     </div>
                     <div class="profile_name">
                         <label class="nameLabel">User Name: </label>
@@ -31,7 +32,7 @@
                         <a class="btn btn-primary" href="{{ route('updatePassword-Show')}}" >Update Password</a>
                     </div>
                     <div class="profile_item">
-                        <h4>Total Buy: <span style="color:green; font-weight:700">4 Items</span></h4>
+                        <h4>Total Buy: <span style="color:green; font-weight:700">5 Items</span></h4>
                     </div>
                 </div>
             </div>
@@ -115,14 +116,12 @@
             // img settings
              let photoFile = $("#imageInput").prop('files')[0];
              let formData = new FormData();
-             formData.append('photo',photoFile);
+             formData.append('photo', photoFile);
              photoUpload: '{{route("file.Upload")}}';
              axios.post("photoUpload", formData)
                  .then(function(response){
                      if(response.status===200){
-                         toastr.success('Image Update Success');
-                     }else{
-                         toastr.error('Image Update Fail');
+                        toastr.success('Image Update Success');
                      }
                  })
                  .catch(function(error){

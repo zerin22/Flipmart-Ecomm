@@ -338,13 +338,13 @@
                 </li>
 
                 <li class="nav-item @yield('stock')">
-                    <a href="#" class="nav-link @yield('stockActive')">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon far fa-sticky-note"></i>
                         <p>Stock-Management<i class="fas fa-angle-left right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('stock.index') }}" class="nav-link @yield('stockPending')">
+                            <a href="{{ route('stock.index') }}" class="nav-link @yield('stockActive')">
                                 <i class="nav-icon fas fa-sticky-note"></i>
                                 <p>All Stock</p>
                             </a>

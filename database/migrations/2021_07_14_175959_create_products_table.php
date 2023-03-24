@@ -41,7 +41,7 @@ class CreateProductsTable extends Migration
             $table->integer('featured')->nullable();
             $table->integer('spacial_offer')->nullable();
             $table->integer('spacial_deals')->nullable();
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(1)->comment('active is  1');
             $table->foreign('category_id')->references('id')->on('categories') ->onDelete('cascade');
             $table->foreign('subcategory_id')->references('id')->on('sub_categories') ->onDelete('cascade');
             $table->foreign('subsubcategory_id')->references('id')->on('sub_sub_categories') ->onDelete('cascade');

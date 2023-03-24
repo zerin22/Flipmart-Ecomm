@@ -29,7 +29,7 @@
                     <div class="col-md-10 m-auto">
                         <div class="card card-warning">
                             <div class="card-header">
-                                <h3 class="card-title">Add Product</h3>
+                                <h4>Add Product</h4>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -289,7 +289,7 @@
                                                 <div class="form-group">
                                                     <label>Product Thumbnail<span style="color:red">*</span></label>
                                                     <div class="custom-file">
-                                                        <img class="mb-3" width="200px" height="200px" src="{{ asset('backend') }}/images/default/profile_img.png" alt="image" id="single_img">
+                                                        <img class="mb-3" width="200px" height="200px" src="{{ asset('backend') }}/images/default/product_default.png" alt="image" id="single_img">
                                                         <input type="file" id="imageInput" name="product_thumbnail" class="m-auto">
                                                         @error('product_thumbnail')
                                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
@@ -312,7 +312,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group text-center mt-3">
-                                        <input type="submit"  name="submit" value="Save" class="btn btn-success">
+                                        <input type="submit"  name="submit" value="Save" class="btn btn-warning custom_lg_btn">
                                     </div>
                                 </form>
                             </div>

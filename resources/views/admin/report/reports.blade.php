@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </div>
 
         <section class="content">

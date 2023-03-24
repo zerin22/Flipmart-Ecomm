@@ -57,31 +57,33 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
     Route::get('/admin-profile', [AdminController::class, 'adminProfileShow'])->name('admin.profile');
     Route::get('/adminNameShow/{id}', [AdminController::class, 'adminNameShow'])->name('admin.NameShow');
     Route::post('/adminNameStore/{id}', [AdminController::class, 'adminNameStore'])->name('adminNameUpdate-store');
+
     // admin email update route
     Route::get('/adminEmailShow/{id}', [AdminController::class, 'adminEmailShow'])->name('adminEmailShow');
     Route::post('/adminEmail/store/{id}', [AdminController::class, 'adminEmailStore'])->name('adminEmailUpdate-store');
+
     // admin update password route
     Route::get('/adminPasswordShow', [AdminController::class, 'showPasswordUpdatePage'])->name('admin.passwordShow');
     Route::post('/password/store', [AdminController::class, 'adminPasswordStore'])->name('updatePassword-store');
-    Route::post('/photoUpload', [UserController::class, 'photoUpload'])->name('file.Upload');
+    Route::post('/photoUpload', [AdminController::class, 'photoUpload'])->name('file.Upload');
 
     // ==================== brand router ==================================
     Route::resource('brands', BrandController::class);
-    // ==================== brand router =================================
 
     // =================== Store Room All route ===================================
     Route::get('/store/room/', [StoreRoomController::class, 'StoreRoomView'])->name('brand.storeRoom');
     Route::get('/brand/permanentDelete/{id}', [StoreRoomController::class, 'brandPermanentDelete'])->name('brand.permanentDelete');
     Route::get('/brand/restore/{id}', [StoreRoomController::class, 'brandRestore'])->name('brand.restore');
+
     // multiple image store
     Route::get('multipleImage/storeRoom', [StoreRoomController::class, 'StoreRoomController'])->name('products.storeroom');
     Route::get('multipleImage/permanentDelete/{id}', [StoreRoomController::class, 'multipleImagePermanenetDelete'])->name('multipleImage.premanentDelete');
     Route::get('multipleImage/restore/{id}', [StoreRoomController::class, 'multipleImageRestore'])->name('multiImage.restore');
+
     // product store
     Route::get('Product/restore/view', [StoreRoomController::class, 'ProductRestoreView'])->name('ProductView');
     Route::get('Product/restore/{id}', [StoreRoomController::class, 'ProductRestore'])->name('product.restore');
     Route::get('Product/permanentDelete/{id}', [StoreRoomController::class, 'ProductImagePermanentDelete'])->name('product.permanentDelete');
-    // =================== Store Room All route ===================================
 
     // =========================== Category routes =======================
     Route::resource('category', CategoryController::class);
@@ -101,7 +103,8 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
     Route::get('products/SubSubCategory/ajax/{id}', [ProductController::class, 'SubSubCategoryIdGetByAjax']);
 
     // Edit custom route
-    Route::get('products/edit/{id}', [ProductController::class, 'editFunc'])->name('subcategoryEdit');
+    // Route::get('products/edit/{id}', [ProductController::class, 'editFunc'])->name('subcategoryEdit');
+    Route::get('products/edit/{id}', [ProductController::class, 'productEdit'])->name('product.edit');
 
     // Update ajax data change route
     Route::get('products/edit/updateChangeSubcategory/{id}', [ProductController::class, 'subCategoryIdGetByAjax']);
@@ -187,6 +190,9 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
 
     //stock management
     Route::resource('stock', StockManagement::class);
+    Route::post('stock/subcategory', [StockManagement::class, 'stockCheckBysubCategory'])->name('searchBySubCategory');
+    Route::post('stock/sub/subcategory', [StockManagement::class, 'stockCheckBysubCategory'])->name('searchBySubSubCategory');
+    Route::get('stock/subsubcategory/ajax/', [StockManagement::class, 'SubSubCategoryAjaxShow'])->name('StockSubSubCategoryAjaxShow');
 
     //Discount Banner
     Route::resource('banner', DiscountBannerController::class);
@@ -222,7 +228,7 @@ Route::group(['prefix' => 'user', 'middleware'=> ['user', 'auth'],], function() 
     Route::get('/updatePasswordShow', [UserController::class, 'updatePasswordShow'])->name('updatePassword-Show');
     Route::post('/password/store', [UserController::class, 'passwordStore'])->name('password-store');
     //user image upload
-    Route::post('/photo/Upload', [UserController::class, 'photoUpload'])->name('file.Upload');
+    Route::post('/photoUpload', [UserController::class, 'photoUpload'])->name('file.Upload');
 
     // cardPage
     Route::get('/get-shoppingCart', [CartPageController::class, 'getShoppingCart'])->name('getShoppingCart');

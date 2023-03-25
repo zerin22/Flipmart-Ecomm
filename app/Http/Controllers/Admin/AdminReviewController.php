@@ -27,4 +27,10 @@ class AdminReviewController extends Controller
         ]);
         return redirect()->back()->with('success', 'Pending Success');
     }
+
+    public function destory($id)
+    {
+        ReviewModel::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Delete Success');
+    }
 }

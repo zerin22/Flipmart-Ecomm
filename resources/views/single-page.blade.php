@@ -31,10 +31,10 @@
                             <img src="{{ asset('fontend') }}/assets/images/banners/LHS-banner.jpg" alt="Image">
                         </div>
                         <!-- =============== HOT DEALS ========== -->
-                        @include('layouts.fontend.inc.hot-deals');
+                        @include('layouts.fontend.inc.hot-deals')
                         <!-- =============== HOT DEALS: END ================= -->
                         <!-- ============ Testimonials ================== -->
-                        @include('layouts.fontend.inc.testmonial');
+                        @include('layouts.fontend.inc.testmonial')
                         <!-- ========== Testimonials: END ============ -->
                     </div>
                 </div><!-- /.sidebar -->
@@ -85,7 +85,7 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 @for($i=1; $i<=5; $i++)
-                                                    <span style="color:red" class="glyphicon glyphicon-star{{ $i <= $avarageRating ? "" : '-empty'}}"></span>
+                                                    <span style="color:red" data-value="{{ $i }}" class="glyphicon glyphicon-star{{ $i <= $avarageRating ? "" : '-empty'}} rating-star"></span>
                                                 @endfor
                                             </div>
                                             <div class="col-sm-8">
@@ -280,7 +280,9 @@
 
                                     <div id="review" class="tab-pane">
                                         <div class="product-tab">
-
+                                            <div class="comment_title">
+                                                <h4><a class="text-info" href="{{ route('login') }}">Login</a> or <a  class="text-info" href="{{ route('register') }}">Register</a> for review</h4>
+                                            </div>
                                             @forelse($reviewProducts as $review)
                                             <div class="product-reviews">
                                                 <h4 class="title">{{ ucwords($review->user->name) }}</h4>
@@ -304,15 +306,63 @@
                                                 </h4>
                                             @endforelse
 
-                                            <div class="product-add-review">
-                                                <div class="review-form">
-                                                    <div class="form-container">
+                                            @auth
+                                                @if (Auth::user()->role_id == 2)
+                                                    <div class="product-add-review">
+                                                        <form action="{{ route('review.store') }}" method="post" role="form" class="cnt-form">
+                                                        @csrf
+                                                        <h4 class="title">Write your own review</h4>
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                        <div class="review-table">
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="cell-label">&nbsp;</th>
+                                                                            <th>1 star</th>
+                                                                            <th>2 stars</th>
+                                                                            <th>3 stars</th>
+                                                                            <th>4 stars</th>
+                                                                            <th>5 stars</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="cell-label">Rating</td>
+                                                                            <td><input name="rating" type="radio" name="quality" class="radio" value="1"></td>
+                                                                            <td><input name="rating" type="radio" name="quality" class="radio" value="2"></td>
+                                                                            <td><input name="rating" type="radio" name="quality" class="radio" value="3"></td>
+                                                                            <td><input name="rating" type="radio" name="quality" class="radio" value="4"></td>
+                                                                            <td><input name="rating" type="radio" name="quality" class="radio" value="5"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
 
-                                                    </div><!-- /.form-container -->
-                                                </div><!-- /.review-form -->
-                                            </div><!-- /.product-add-review -->
-                                        </div><!-- /.product-tab -->
-                                    </div><!-- /.tab-pane -->
+                                                        <div class="review-form">
+                                                            <div class="form-container">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputReview">Review <span class="astk">*</span></label>
+                                                                            <textarea name="comment" class="form-control txt txt-review" id="exampleInputReview" rows="4" placeholder="Comment Here..."></textarea>
+                                                                        </div><!-- /.form-group -->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="action text-right">
+                                                                    <button type="submit" class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                @endif
+                                            @endauth
+
+                                        </div>
+                                    </div>
+
                                     @php
                                         $comments = App\Models\Comment::where('product_single_id', $product->id)->where('status', 'approved')->orderBy('id', 'desc')->paginate(15);
                                     @endphp
@@ -360,19 +410,21 @@
                                             </div>
 
                                             @auth
-                                                <form action="{{ route('comment.store') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="product_single_id" value="{{ $product->id }}">
-                                                    <input type="hidden" name="auth_name" value="{{ Auth::user()->name }}">
-                                                    <div class="form-group">
-                                                        <textarea name="description" id="" cols="30" rows="7" class="form-control" placeholder="Comment Here..." ></textarea>
-                                                        @error('description')
-                                                        <span class="text-danger font-weight-bold">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
+                                                @if (Auth::user()->role_id == 2)
+                                                    <form action="{{ route('comment.store') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="product_single_id" value="{{ $product->id }}">
+                                                        <input type="hidden" name="auth_name" value="{{ Auth::user()->name }}">
+                                                        <div class="form-group">
+                                                            <textarea name="description" id="" cols="30" rows="7" class="form-control" placeholder="Comment Here..." ></textarea>
+                                                            @error('description')
+                                                            <span class="text-danger font-weight-bold">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
 
-                                                    <input type="submit" value="Comment" class="btn btn-info">
-                                                </form>
+                                                        <input type="submit" value="Comment" class="btn btn-info">
+                                                    </form>
+                                                @endif
                                             @endauth
                                            <div class="paginationSection pull-right">
                                                <nav aria-label="Page navigation example">
@@ -531,6 +583,15 @@
 
 
 @section('scripts')
+
+    <script>
+        $(document).ready(function() {
+        $('.rating-star').click(function(){
+           alert($(this).attr('data-value'))
+        })
+
+    });
+    </script>
 
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v12.0&appId=519249602090939&autoLogAppEvents=1" nonce="4SHUMDc0"></script>

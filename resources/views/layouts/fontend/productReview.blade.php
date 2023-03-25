@@ -16,7 +16,7 @@
             </div><!-- /.breadcrumb-inner -->
         </div><!-- /.container -->
     </div><!-- /.breadcrumb -->
-    <div class="body-content outer-top-xs">
+    {{-- <div class="body-content outer-top-xs">
         <div class='container'>
            <div class="sign-in-page" style="margin: 50px 0px 100px">
             <div class='row'>
@@ -78,7 +78,7 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div>
-    </div>
+    </div> --}}
 
 
 

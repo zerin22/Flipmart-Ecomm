@@ -134,12 +134,6 @@ class FontEndController extends Controller
     //Blog
     public function allBlog()
     {
-    //    return $comment_info = DB::table('blog_comments')
-    //              ->select('blog_id', DB::raw('count(*) as total'))
-    //              ->groupBy('blog_id')
-    //              ->get();
-
-
         $blogs = Blog::latest()->paginate(5);
         return view('layouts.fontend.blog.all-blog', compact('blogs'));
     }

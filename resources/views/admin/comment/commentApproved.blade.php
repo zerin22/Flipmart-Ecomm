@@ -31,7 +31,7 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Product Thumbnail</th>
+                                {{-- <th>Product Thumbnail</th> --}}
                                 <th>Comment</th>
                                 <th>Status</th>
                                 <th>Action</th>

@@ -13,7 +13,7 @@
                         <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                             <div class="item_1 ">
                                 <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('blogcomments.approved.show') }}">Approved Comment</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('blogcomment.index') }}">Blog Comments</a></li>
                                     <li class="breadcrumb-item active">Blog Comment Reply</li>
                                 </ul>
                             </div>

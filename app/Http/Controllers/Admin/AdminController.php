@@ -79,8 +79,6 @@ class AdminController extends Controller
             return redirect()->back()->with('fail', "Password and Confirm Password are not matched");
         }
     }
-
-    // image upload
     // image upload
     public function image_settings($image)
     {

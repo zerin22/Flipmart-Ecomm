@@ -17,7 +17,7 @@ class AdminCommentController extends Controller
     }
     // show item in approved page
     public function adminApprovedCommentShow(){
-        $comments = Comment::with('product')->where('status', 'Approved')->orderBy('id', 'desc')->get();
+        $comments = Comment::with('product')->where('status', 'approved')->orderBy('id', 'desc')->get();
         return view('admin.comment.commentApproved', compact('comments'));
     }
 

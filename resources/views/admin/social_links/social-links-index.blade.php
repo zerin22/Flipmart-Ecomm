@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin-master')
-@section('title','Social Links')
+@section('title','Settings')
 @section('allSocialLinksActive') active @endsection
 @section('content')
     <div class="content-wrapper">

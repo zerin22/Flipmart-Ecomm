@@ -17,7 +17,7 @@ class BlogCommentController extends Controller
      */
     public function index()
     {
-        $blogComments = BlogComment::with('relationWithBlog')->where('status', 'pending')->latest()->get();
+        $blogComments = BlogComment::with('relationWithBlog')->latest()->get();
         return view('admin.blogComment.blogComment-index', compact('blogComments'));
     }
 
@@ -37,11 +37,11 @@ class BlogCommentController extends Controller
         return redirect()->back()->with('success', 'Pending Success');
     }
 
-    public function blogApprovedCommentShow()
-    {
-        $blogCommentsApproves = BlogComment::where('status', 'approved')->latest()->get();
-        return view('admin.blogComment.blogCommentApproved', compact('blogCommentsApproves'));
-    }
+    // public function blogApprovedCommentShow()
+    // {
+    //     $blogCommentsApproves = BlogComment::where('status', 'approved')->latest()->get();
+    //     return view('admin.blogComment.blogCommentApproved', compact('blogCommentsApproves'));
+    // }
 
     public function blogCommentReply($id)
     {
@@ -49,14 +49,14 @@ class BlogCommentController extends Controller
         return view('admin.blogComment.blogCommentReply', compact('blogComment'));
     }
 
-    public function blogCommentReplyStore(Request $request, $id)
+    public function blogCommentReplyStore(Request $request)
     {
         $blogReply = new BlogcommentReply;
         $blogReply->blogcomment_id = $request->blogcomment_id;
         $blogReply->auth_id = Auth::id();
         $blogReply->description = $request->description;
         $blogReply->save();
-        return redirect()->route('blogcomments.approved.show')->with('success', 'Comment Reply Success');
+        return redirect()->route('blogcomment.index')->with('success', 'Comment Reply Success');
     }
 
     public function destroy($id)

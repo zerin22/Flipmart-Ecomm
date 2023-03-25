@@ -29,8 +29,17 @@
                     @csrf
                     <div class="card p-4">
                         <div class="row align-items-center">
-                            <div class="col-md-5">
-                                <h5 style="margin-bottom:15px" class="card-title">Search By SubCategory</h5>
+                            <div class="col-md-4">
+                                <h5 style="margin-bottom:15px" class="card-title">Search By Category</h5>
+                                <select name="category_id" id="" class="form-control">
+                                    <option label="Search"></option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->category_name_en }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 style="margin-bottom:15px" class="card-title">SubCategory</h5>
                                 <select name="subcategory_id" id="" class="form-control">
                                     <option label="Search"></option>
                                     @foreach ($subCategories as $subCategory)
@@ -38,7 +47,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <h5 style="margin-bottom:15px" class="card-title">Sub SubCategory</h5>
                                 <select name="subsubcategory_id" id="" class="form-control">
                                     <option label="Search"></option>
@@ -47,7 +56,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-2" style="margin-top: 35px">
+                            <div class="ml-auto text-center" style="margin-top: 35px">
                                 <button type="submit" class="btn  btn-primary">Search</button>
                             </div>
                         </div>
@@ -72,7 +81,7 @@
                                 <tr>
                                     <th>{{ $loop->index+1 }}</th>
                                     <th><img width="100px" height="100px" src="{{ asset($item->product_thumbnail) }}" alt=""></th>
-                                    <td>{{ $item->product_name_en }}</td>
+                                    <td><a href="{{ route('products.show', $item->id) }}">{{ $item->product_name_en }}</a></td>
                                     <td>{{ $item->product_qty }}</td>
                                 </tr>
                             @endforeach
@@ -88,25 +97,24 @@
 @section('scripts')
     <script type="text/javascript">
 
-    $(document).ready(function() {
-            $('select[name="subcategory_id"]').on('change', function(e){
-                e.preventDefault()
-                var subcategory_id = $(this).val();
-                if(subcategory_id) {
+        $(document).ready(function() {
+            $('select[name="category_id"]').on('change', function(){
+                var category_id = $(this).val();
+                if(category_id) {
                     $.ajax({
-                        url: "{{ route('StockSubSubCategoryAjaxShow') }}",
+                        url: "{{ route('StockSubCategoryAjaxShow') }}",
                         type:"GET",
                         data:{
-                            subcategory:subcategory_id
+                            category_id:category_id
                         },
                         dataType:"json",
                         success:function(data) {
                             console.log(data);
-                        var d =$('select[name="subsubcategory_id"]').empty();
-
-                            $.each(data, function(key, value){
-                                $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'">' + value.subsubcategory_name_en + '</option>');
-                            });
+                            var d =$('select[name="subcategory_id"]').empty();
+                            $('select[name="subcategory_id"]').append('<option value="">-- Select Subcategory --</option>');
+                                $.each(data, function(key, value){
+                                    $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+                                });
                         },
                     });
                 } else {
@@ -114,6 +122,34 @@
                 }
             });
         });
+
+        $(document).ready(function() {
+            $('select[name="subcategory_id"]').on('change', function(){
+                var subcategory_id = $(this).val();
+                if(subcategory_id) {
+                    $.ajax({
+                        url: "{{ route('StockSubSubCategoryAjaxShow') }}",
+                        type:"GET",
+                        data:{
+                            subCategory_id:subcategory_id
+                        },
+                        dataType:"json",
+                        success:function(data) {
+                            console.log(data);
+                            var d =$('select[name="subsubcategory_id"]').empty();
+                            $('select[name="subsubcategory_id"]').append('<option value="">-- Select Sub Subcategory --</option>');
+                                $.each(data, function(key, value){
+                                    $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'">' + value.subsubcategory_name_en + '</option>');
+                                });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+
+
 
         $(document).ready( function () {
             $('#table_id').DataTable();

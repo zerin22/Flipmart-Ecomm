@@ -175,6 +175,7 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
 
     // review
     Route::get("/review", [AdminReviewController::class, 'index'])->name("review.index");
+    Route::delete("/review/delete/{id}", [AdminReviewController::class, 'destory'])->name("review.destory");
     Route::get("/review/approved/{id}", [AdminReviewController::class, 'reviewApproved'])->name("review.approved");
     Route::get("/review/pending/{id}", [AdminReviewController::class, 'reviewPending'])->name("review.pending");
 
@@ -192,7 +193,8 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
     Route::resource('stock', StockManagement::class);
     Route::post('stock/subcategory', [StockManagement::class, 'stockCheckBysubCategory'])->name('searchBySubCategory');
     Route::post('stock/sub/subcategory', [StockManagement::class, 'stockCheckBysubCategory'])->name('searchBySubSubCategory');
-    Route::get('stock/subsubcategory/ajax/', [StockManagement::class, 'SubSubCategoryAjaxShow'])->name('StockSubSubCategoryAjaxShow');
+    Route::get('stock/subsubcategory/ajax/', [StockManagement::class, 'SubCategoryAjaxShow'])->name('StockSubCategoryAjaxShow');
+    Route::get('stock/sub/subsubcategory/ajax/', [StockManagement::class, 'SubSubCategoryAjaxShow'])->name('StockSubSubCategoryAjaxShow');
 
     //Discount Banner
     Route::resource('banner', DiscountBannerController::class);
@@ -255,18 +257,22 @@ Route::group(['prefix' => 'user', 'middleware'=> ['user', 'auth'],], function() 
     // Order Route
     Route::get('/orderView/{order_id}', [OrderController::class, 'ViewOrder']);
     Route::get('/downloadInvoice/{invoice_id}', [OrderController::class, 'downloadInvoice']);
+
     // return order
     Route::post("/return/order/{order_id}", [OrderController::class, 'returnOrder'])->name('order.return');
 
     // product review
     Route::get("/product/review/{product_id}", [ReviewController::class, 'productReview'])->name('review.create');
     Route::post("/review/store", [ReviewController::class, 'productReviewStore'])->name('review.store');
+
     // product comment system
     Route::post("/comment/store", [CommentController::class, 'commentStore'])->name('comment.store');
     // Route::post("/comment/index", [CommentController::class, 'commentIndex']);
 
     //user blog Comment
     Route::post('/blog/comment/store', [BlogUserCommentController::class, 'blogCommentStore'])->name('blog.comment.store');
+
+    //Review
 });
 
 Route::group([ 'middleware'=> ['user', 'auth']], function() {

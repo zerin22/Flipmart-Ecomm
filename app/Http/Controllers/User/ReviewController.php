@@ -16,6 +16,18 @@ class ReviewController extends Controller
         $request->validate([
             'comment' => 'required',
         ]);
+
+        $checkUser = ReviewModel::where(['user_id' => Auth::id(), 'product_id' => $request->product_id])->first();
+        if($checkUser)
+        {
+            $review = ReviewModel::findOrFail($checkUser->id);
+            $review->rating = $request->rating;
+            $review->comment = $request->comment;
+            $review->status = 'pending';
+            $review->save();
+            return redirect()->back()->with("success", 'Review successfully');
+        }
+
         ReviewModel::insert([
             'user_id' => Auth::id(),
             'product_id' => $request->product_id,
@@ -23,6 +35,6 @@ class ReviewController extends Controller
             'comment' => $request->comment,
             'created_at' => Carbon::now(),
         ]);
-        return redirect()->route('user.dashboard')->with("success", 'Review successfully');
+        return redirect()->back()->with("success", 'Review successfully');
     }
 }

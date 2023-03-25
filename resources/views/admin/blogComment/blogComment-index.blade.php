@@ -47,7 +47,11 @@
                                     <td>{{ $blogComment->relationWithBlog->title }}</td>
                                     <td>{{ $blogComment->comment }}</td>
                                     <td>
-                                        <span class="badge badge-color" >{{ $blogComment->status }}</span>
+                                        @if( $blogComment->status == 'approved')
+                                            <span class="badge badge-fill badge-success">{{ $blogComment->status }}</span>
+                                        @else
+                                            <span class="badge badge-fill badge-color">{{ $blogComment->status }}</span>
+                                        @endif
                                     </td>
 
                                     <td>
@@ -56,22 +60,17 @@
                                              Action
                                             </button>
                                             <div class="dropdown-menu">
-                                            @if( $blogComment->status == 'pending' )
-                                                <a href="{{ route('blogcomment.approved', $blogComment->id )}}" class="dropdown-item">Approved</a>
-                                            {{-- @else
-                                                <a href="{{ route('blogcomment.pending', $blogComment->id ) }}"  class="dropdown-item">Pending</a> --}}
-                                            @endif
-                                              <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $blogComment->id }}" >Delete</a>
+                                                @if( $blogComment->status == 'pending' )
+                                                    <a href="{{ route('blogcomment.approved', $blogComment->id )}}" class="dropdown-item">Approved</a>
+                                                @else
+                                                    <a href="{{ route('blogcomment.pending', $blogComment->id ) }}"  class="dropdown-item">Pending</a>
+                                                @endif
+                                                @if($blogComment->status == 'approved')
+                                                    <a class="dropdown-item" href="{{ route('blogcomments.replay',$blogComment->id) }}">Reply</a>
+                                                @endif
+                                                <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $blogComment->id }}" >Delete</a>
                                             </div>
                                         </div>
-
-                                        {{-- @if( $blogComment->status == 'pending' )
-                                            <a href="{{ route('blogcomment.approved', $blogComment->id )}}" class="btn btn-info mr-2">Approved</a>
-                                            @else
-                                                <a href="{{ route('blogcomment.pending', $blogComment->id )}}" class="btn btn-warning  mr-2">Pending</a>
-                                            @endif
-
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $blogComment->id }}">Delete</button> --}}
 
 
                                         <!-- Modal For Delete -->

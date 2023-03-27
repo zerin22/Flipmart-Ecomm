@@ -34,7 +34,7 @@
                             <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Blog Title</label>
+                                    <label>Blog Title<span style="color:red">*</span></label>
                                     <input type="text" id="title"  class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title" placeholder="Title">
                                     @error('title')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Blog Slug</label>
+                                    <label>Blog Slug<span style="color:red">*</span></label>
                                     <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" name="slug" placeholder="Slug">
                                     @error('slug')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
@@ -50,7 +50,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Description</label>
+                                    <label>Description<span style="color:red">*</span></label>
                                     <textarea class="form-control @error('description') is-invalid @enderror" id="editorBlog" value="{{ old('description') }}" name="description" placeholder="Example..."></textarea>
                                     @error('description')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Thumbnail Image: (390px 215px)</label>
+                                    <label>Thumbnail Image: (390px 215px)<span style="color:red">*</span></label>
                                     <input type="file" onchange="document.getElementById('img_id1').src=window.URL.createObjectURL(this.files[0])" name="thumbnail_image" class=" mb-3">
                                     <img id="img_id1" width="500px" height="300px" src="{{ asset('backend') }}/images/brand/default-image.jpg" alt="">
                                     @error('thumbnail_image')
@@ -66,7 +66,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Feature Image:</label>
+                                    <label>Feature Image:<span style="color:red">*</span></label>
                                     <input type="file" onchange="document.getElementById('img_id2').src=window.URL.createObjectURL(this.files[0])" name="feature_image" class="mb-3">
                                     <img id="img_id2" width="500px" height="300px" src="{{ asset('backend') }}/images/brand/default-image.jpg" alt="Feature Image">
                                     @error('feature_image')

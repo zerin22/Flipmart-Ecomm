@@ -179,14 +179,20 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
     Route::get("/review/approved/{id}", [AdminReviewController::class, 'reviewApproved'])->name("review.approved");
     Route::get("/review/pending/{id}", [AdminReviewController::class, 'reviewPending'])->name("review.pending");
 
+    Route::get('product-review/approved/search', [AdminReviewController::class, 'productReviewApproveSearch'])->name('review.approved.search');
+    Route::get('product-review/pending/search', [AdminReviewController::class, 'productReviewPendingSearch'])->name('review.pending.search');
+
     // admin comment controller
     Route::get('comments', [AdminCommentController::class, 'adminCommentIndex'])->name('comments.store');
-    Route::get('comments/approved/show/', [AdminCommentController::class, 'adminApprovedCommentShow'])->name('comments.approved.show');
+    // Route::get('comments/approved/show/', [AdminCommentController::class, 'adminApprovedCommentShow'])->name('comments.approved.show');
     Route::get("/comments/approved/{id}", [AdminCommentController::class, 'commentsApproved'])->name("comments.approved");
     Route::get("/comments/pending/{id}", [AdminCommentController::class, 'commentsPending'])->name("comments.pending");
     Route::get("/comments/replay/{id}", [AdminCommentController::class, 'commentsReplay'])->name('adminComments.replay');
     Route::post("/comments/replay/store", [AdminCommentController::class, 'commentsReplayStore'])->name('comments.replay.store');
     Route::get("/comment/delete/{id}", [AdminCommentController::class, 'commentDelete'])->name('comments.delete');
+
+    Route::get('product-comments/approved/search', [AdminCommentController::class, 'productCommentApproveSearch'])->name('comments.approved.search');
+    Route::get('product-comments/pending/search', [AdminCommentController::class, 'productCommentPendingSearch'])->name('comments.pending.search');
 
 
     //stock management
@@ -204,11 +210,13 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
 
     //BlogComment
     Route::resource('blogcomment', BlogCommentController::class);
-    Route::get('blogcomment/approved/show', [BlogCommentController::class, 'blogApprovedCommentShow'])->name('blogcomments.approved.show');
     Route::get('blogcomment/approved/{id}', [BlogCommentController::class, 'blogCommentsApproved'])->name('blogcomment.approved');
     Route::get('blogcomment/pending/{id}', [BlogCommentController::class, 'blogCommentsPending'])->name('blogcomment.pending');
     Route::get('blogcomment/reply/{id}', [BlogCommentController::class, 'blogCommentReply'])->name('blogcomments.replay');
     Route::post('blogcomment/reply/{id}', [BlogCommentController::class, 'blogCommentReplyStore'])->name('blogcomments.replay.store');
+
+    Route::get('approved/search/approve', [BlogCommentController::class, 'blogCommentSearchApprove'])->name('blogcomments.approved.search');
+    Route::get('approved/search/pending', [BlogCommentController::class, 'blogCommentSearchPending'])->name('blogcomments.pending.search');
 
     // Social Links
     Route::resource('social-links', SocialLinkController::class);

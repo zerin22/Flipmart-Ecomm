@@ -278,13 +278,21 @@
                         <p>Reports</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('review.index') }}" class="nav-link @yield('reviewOrder')">
                         <i class="nav-icon fas fa-thumbs-up"></i>
                         <p>Review</p>
                     </a>
                 </li>
+
                 <li class="nav-item @yield('comment')">
+                    <a href="{{ route('comments.store') }}" class="nav-link @yield('commentPending')">
+                        <i class="nav-icon fas fa-comment-dots"></i>
+                        <p>BlogComments</p>
+                    </a>
+                </li>
+                {{-- <li class="nav-item @yield('comment')">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>Product-Comment<i class="fas fa-angle-left right"></i></p>
@@ -302,9 +310,8 @@
                                 <p>Approved Comment</p>
                             </a>
                         </li>
-
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="nav-item @yield('stock')">
                     <a href="#" class="nav-link">
@@ -369,32 +376,13 @@
                     </ul>
                 </li>
 
-                {{-- <li class="nav-item @yield('blogComment')">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-comment-dots"></i>
-                        <p>BlogComment<i class="fas fa-angle-left right"></i></p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('blogcomment.index') }}" class="nav-link @yield('blogcommentPending')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Comments</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('blogcomments.approved.show') }}" class="nav-link @yield('blogcommentApproved')">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Blog Comment Show</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
                 <li class="nav-item @yield('blogComment')">
-                    <a href="{{ route('social-links.index') }}" class="nav-link @yield('blogcommentPending')">
+                    <a href="{{ route('blogcomment.index') }}" class="nav-link @yield('blogcommentPending')">
                         <i class="nav-icon fas fa-comment-dots"></i>
                         <p>BlogComments</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('social-links.index') }}" class="nav-link @yield('allSocialLinksActive')">
                         <i class="nav-icon fas fa-cog"></i>
@@ -404,7 +392,5 @@
 
             </ul>
         </nav>
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
 </aside>

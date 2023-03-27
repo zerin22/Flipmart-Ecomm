@@ -45,18 +45,33 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
-    {
 
-        $request->validated();
-
-        $image = $request->file('product_thumbnail');
+     public function image_settings($image)
+     {
         $img_ext = strtolower($image->getClientOriginalExtension());
         $hex_name = hexdec(uniqid());
         $img_name = $hex_name . '.' . $img_ext;
         $location = 'backend/images/product/thumbnail/';
         $last_image = $location. $img_name;
         Image::make($image)->resize(917, 1000)->save($last_image);
+        return $last_image;
+     }
+
+    public function store(ProductRequest $request)
+    {
+
+        $request->validated();
+
+        $image = $request->file('product_thumbnail');
+        // Image::make($image)->resize(917, 1000)->save($image);
+        $last_image = $this->image_settings($image);
+
+        // $img_ext = strtolower($image->getClientOriginalExtension());
+        // $hex_name = hexdec(uniqid());
+        // $img_name = $hex_name . '.' . $img_ext;
+        // $location = 'backend/images/product/thumbnail/';
+        // $last_image = $location. $img_name;
+        // Image::make($image)->resize(917, 1000)->save($last_image);
 
         $product_id = Product::insertGetId([
             "category_id" => $request->category_id,
@@ -91,12 +106,7 @@ class ProductController extends Controller
         $multiImages = $request->file('MultiImage');
         if ($multiImages){
             foreach($multiImages as $img){
-                $img_ext = strtolower($img->getClientOriginalExtension());
-                $hex_name = hexdec(uniqid());
-                $img_name = $hex_name . '.' . $img_ext;
-                $location = 'backend/images/product/multiImage/';
-                $multi_image = $location. $img_name;
-                Image::make($img)->resize(917, 1000)->save($multi_image );
+                $multi_image = $this->image_settings($img);
                 MultiImage::insert([
                     'product_id' => $product_id,
                     'photo_name' => $multi_image,
@@ -127,45 +137,21 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function productEdit($id){
+        $products = Product::findOrFail($id);
+        $categorys = Category::latest()->get();
+        $subcategories = SubCategory::latest()->get();
+        // $subcategories = SubCategory::where('category_id', $products->category_id)->get();
+        $subsubcategories = SubSubCategory::latest()->get();
+        // $subsubcategories = SubSubCategory::where('subcategory_id', $products->subcategory_id)->get();
+        $multiimages = MultiImage::where('product_id', $id)->latest()->get();
+        return view('admin.product.edit-product', compact('products', 'categorys', 'multiimages','subcategories','subsubcategories'));
+    }
+
+     public function update(ProductRequest $request, $id)
     {
-        $request->validate([
-            "category_id" => "required",
-            "subcategory_id" => "required",
-            "subsubcategory_id" => "required",
-            "product_name_en" => "required",
-            "product_name_bn" => "required",
-            "product_slug_en" => "required",
-            "product_slug_bn" => "required",
-            "product_tags_en" => "required",
-            "product_tags_bn" => "required",
-            "product_title_en" => "required",
-            "product_title_bn" => "required",
-            "product_desc_en" => "required",
-            "product_desc_bn" => "required",
-            "product_code" => "required",
-            "product_qty" => "required",
-            "selling_price" => "required",
-        ],[
-            "category_id.required" => "Field is required",
-            "subcategory_id.required" => "Field is required",
-            "subsubcategory_id.required" => "Field is required",
-            "product_name_en.required" => "Field is required",
-            "product_name_bn.required" => "Field is required",
-            "product_slug_en.required" => "Field is required",
-            "product_slug_bn.required" => "Field is required",
-            "product_tags_en.required" => "Field is required",
-            "product_tags_bn.required" => "Field is required",
-            "product_title_en.required" => "Field is required",
-            "product_title_bn.required" => "Field is required",
-            "product_desc_en.required" => "Field is required",
-            "product_desc_bn.required" => "Field is required",
-            "product_code.required" => "Field is required",
-            "product_qty.required" => "Field is required",
-            "selling_price.required" => "Field is required",
-
-        ]);
-
+        $request->validated();
 
         Product::findOrFail($id)->update([
             "category_id" => $request->category_id,
@@ -201,17 +187,6 @@ class ProductController extends Controller
 
     }
 
-    public function productEdit($id){
-        $products = Product::findOrFail($id);
-        $categorys = Category::latest()->get();
-        $subcategories = SubCategory::latest()->get();
-        // $subcategories = SubCategory::where('category_id', $products->category_id)->get();
-        $subsubcategories = SubSubCategory::latest()->get();
-        // $subsubcategories = SubSubCategory::where('subcategory_id', $products->subcategory_id)->get();
-        $multiimages = MultiImage::where('product_id', $id)->latest()->get();
-        return view('admin.product.edit-product', compact('products', 'categorys', 'multiimages','subcategories','subsubcategories'));
-    }
-
     public function subCategoryIdGetByAjax($id){
         $result = SubCategory::where('category_id', $id)->orderBy('subcategory_name_en', 'ASC')->get();
         return $result;
@@ -230,12 +205,7 @@ class ProductController extends Controller
                 if (file_exists($deleteImg->photo_name)) {
                     unlink($deleteImg->photo_name);
                 }
-                $img_ext = strtolower($img->getClientOriginalExtension());
-                $hex_name = hexdec(uniqid());
-                $img_name = $hex_name . '.' . $img_ext;
-                $location = 'backend/images/product/multiImage/';
-                $multi_image = $location . $img_name;
-                Image::make($img)->resize(917, 1000)->save($multi_image);
+                $multi_image = $this->image_settings($img);
                 MultiImage::where('id', $id)->update([
                     'photo_name' => $multi_image,
                     "created_at" => Carbon::now(),
@@ -255,12 +225,7 @@ class ProductController extends Controller
             if(file_exists($old_img->product_thumbnail)){
                 unlink($old_img->product_thumbnail);
             }
-            $img_ext = strtolower($image->getClientOriginalExtension());
-            $hex_name = hexdec(uniqid());
-            $img_name = $hex_name . '.' . $img_ext;
-            $location = 'backend/images/product/thumbnail/';
-            $last_image = $location. $img_name;
-            Image::make($image)->resize(917, 1000)->save($last_image);
+            $last_image = $this->image_settings($image);
             Product::findOrFail($id)->update([
                 "product_thumbnail" => $last_image,
                 "updated_at" => Carbon::now(),

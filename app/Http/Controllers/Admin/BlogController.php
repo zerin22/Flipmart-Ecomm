@@ -45,7 +45,6 @@ class BlogController extends Controller
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         $location = 'backend/images/blog/';
         $final_image = $location.$name_gen;
-        Image::make($image)->save($final_image);
         return $final_image;
     }
 
@@ -63,6 +62,7 @@ class BlogController extends Controller
         $thumbnail_image = $request->file('thumbnail_image');
         $final_thumbnail_image = $this->image_settings($thumbnail_image );
         Image::make($thumbnail_image)->resize(390, 215)->save($final_thumbnail_image);
+
         $feature_image = $request->file('feature_image');
         $final_feature_image = $this->image_settings($feature_image );
         Image::make($feature_image)->save($final_feature_image);

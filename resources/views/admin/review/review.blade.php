@@ -4,25 +4,40 @@
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                <div class="row">
+                    <div class="col-md-10 m-auto">
+                        <div class="breadrow d-flex justify-content-between mb-3 mt-4">
+                            <div class="item_1 ">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Review</li>
-                        </ul>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                                </ul>
+                            </div>
+                            <div class="item_2">
+                                <label for="">Search By status</label>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                        Select Status
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('review.index') }}">All</a>
+                                        <a class="dropdown-item" href="{{ route('review.pending.search') }}">Pending</a>
+                                        <a class="dropdown-item" href="{{ route('review.approved.search') }}">Approved</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.content-header -->
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 m-auto">
+                    <div class="col-md-10 m-auto">
                         <table class="table table-bordered text-center" id="table_id">
                             <thead>
                             <tr>
@@ -50,7 +65,6 @@
                                         @else
                                             <span class="badge badge-fill badge-color">{{ $item->status }}</span>
                                         @endif
-                                        {{-- <span class="badge badge-success" >{{ $item->status }}</span> --}}
                                     </td>
 
                                     <td>

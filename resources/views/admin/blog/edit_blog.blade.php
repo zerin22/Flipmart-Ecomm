@@ -35,7 +35,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label>Blog Title</label>
+                                    <label>Blog Title<span style="color:red">*</span></label>
                                     <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ $blog->title }}" name="title" placeholder="Title">
                                     @error('title')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Blog Slug</label>
+                                    <label>Blog Slug<span style="color:red">*</span></label>
                                     <input type="text" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $blog->slug }}" name="slug" placeholder="Slug">
                                     @error('slug')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Description</label>
+                                    <label>Description<span style="color:red">*</span></label>
                                     <textarea class="form-control @error('description') is-invalid @enderror" id="editorBlog" name="description" placeholder="Example...">{{ $blog->description }}</textarea>
                                     @error('description')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>

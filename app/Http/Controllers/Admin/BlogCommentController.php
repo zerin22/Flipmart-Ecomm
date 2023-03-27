@@ -37,12 +37,6 @@ class BlogCommentController extends Controller
         return redirect()->back()->with('success', 'Pending Success');
     }
 
-    // public function blogApprovedCommentShow()
-    // {
-    //     $blogCommentsApproves = BlogComment::where('status', 'approved')->latest()->get();
-    //     return view('admin.blogComment.blogCommentApproved', compact('blogCommentsApproves'));
-    // }
-
     public function blogCommentReply($id)
     {
         $blogComment = BlogComment::with('relationWithBlog')->findOrFail($id);
@@ -63,5 +57,17 @@ class BlogCommentController extends Controller
     {
         BlogComment::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Comment Delete Success');
+    }
+
+    //search
+    public function blogCommentSearchApprove()
+    {
+        $blogComments = BlogComment::where('status', 'approved')->latest()->get();
+        return view('admin.blogComment.blogComment-index', compact('blogComments'));
+    }
+    public function blogCommentSearchPending()
+    {
+        $blogComments = BlogComment::where('status', 'pending')->latest()->get();
+        return view('admin.blogComment.blogComment-index', compact('blogComments'));
     }
 }

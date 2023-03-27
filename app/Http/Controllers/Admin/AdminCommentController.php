@@ -12,14 +12,14 @@ class AdminCommentController extends Controller
 {
     // show item in comment index page
     public function adminCommentIndex(){
-        $comments = Comment::with('product')->where('status', 'pending')->orderBy('id', 'desc')->get();
+        $comments = Comment::with('product')->orderBy('id', 'desc')->get();
         return view('admin.comment.comment', compact('comments'));
     }
     // show item in approved page
-    public function adminApprovedCommentShow(){
-        $comments = Comment::with('product')->where('status', 'approved')->orderBy('id', 'desc')->get();
-        return view('admin.comment.commentApproved', compact('comments'));
-    }
+    // public function adminApprovedCommentShow(){
+    //     $comments = Comment::with('product')->where('status', 'approved')->orderBy('id', 'desc')->get();
+    //     return view('admin.comment.commentApproved', compact('comments'));
+    // }
 
     // approved status
     public function commentsApproved($id){
@@ -51,14 +51,25 @@ class AdminCommentController extends Controller
         $data->description = $request->description;
         $data->created_at = Carbon::now();
         $data->save();
-        return redirect()->route('comments.approved.show')->with('success', 'Comment Reply Success');
+        return redirect()->route('admin.comment.comment')->with('success', 'Comment Reply Success');
     }
+
     //Approved Or Pending Comment Delete Item
     public function commentDelete($id){
         Comment::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Comment Delete Success');
     }
 
+    // search
+    public function productCommentApproveSearch()
+    {
+        $comments = Comment::with('product')->where('status', 'approved')->orderBy('id', 'desc')->get();
+        return view('admin.comment.comment', compact('comments'));
+    }
 
-
+    public function productCommentPendingSearch()
+    {
+        $comments = Comment::with('product')->where('status', 'pending')->orderBy('id', 'desc')->get();
+        return view('admin.comment.comment', compact('comments'));
+    }
 }

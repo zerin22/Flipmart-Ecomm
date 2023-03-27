@@ -44,7 +44,7 @@
                                                     <option label="--choose--"></option>
                                                     @foreach($categorys as $item)
                                                         <option value="{{ $item->id }}">{{ $item->category_name_en }}</option>
-                                                        @endforeach
+                                                    @endforeach
                                                 </select>
                                                 @error('category_id')
                                                     <p class="text-danger font-weight-bold">{{ $message }}</p>

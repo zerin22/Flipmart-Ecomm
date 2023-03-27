@@ -14,8 +14,21 @@
                             <div class="item_1 ">
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Blog Comment Pending</li>
+                                    <li class="breadcrumb-item active">Blog Comments</li>
                                 </ul>
+                            </div>
+                            <div class="item_2">
+                                <label for="">Search By status</label>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                        Select Status
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('blogcomment.index') }}">All</a>
+                                        <a class="dropdown-item" href="{{ route('blogcomments.pending.search') }}">Pending</a>
+                                        <a class="dropdown-item" href="{{ route('blogcomments.approved.search') }}">Approved</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +58,10 @@
                                     <td>{{ $loop->index+1 }}</td>
                                     <td>{{ $blogComment->relationWithUser->name }}</td>
                                     <td>{{ $blogComment->relationWithBlog->title }}</td>
-                                    <td>{{ $blogComment->comment }}</td>
+
+                                    <td>
+                                        {{ $blogComment->comment }} || <span class="text-info font-weight-bold" >( {{ $blogComment->relationWithBlogReply->count() }} Replay)</span>
+                                    </td>
                                     <td>
                                         @if( $blogComment->status == 'approved')
                                             <span class="badge badge-fill badge-success">{{ $blogComment->status }}</span>

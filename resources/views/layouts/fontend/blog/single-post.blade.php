@@ -96,7 +96,7 @@
                                 @include('layouts.fontend.blog.comment-loadmore')
                                 </div>
 
-                                @if (count($blogcommentsall) > 0)
+                                @if (count($blogcommentsall) > 3 )
                                     <div class="load_more_button">
                                         <div class="post-load-more col-md-12">
                                             <a href="#!" id="load-more" blog-id="{{$blog->id}}" data-count="3" class="load_more btn btn-upper btn-primary" >

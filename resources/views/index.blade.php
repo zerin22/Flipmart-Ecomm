@@ -859,12 +859,11 @@
                                         <div class="blog-post-image">
                                             <div class="image">
                                                 {{-- <a href="blog.html"><img src="{{ asset('fontend') }}/assets/images/blog-post/post1.jpg" alt=""></a> --}}
-                                                <a href="blog.html"><img src="{{ asset($blog->thumbnail_image) }}" alt=""></a>
+                                                <a href="{{ route('single.blog', ['id' => $blog->id, 'slug' => $blog->slug]) }}"><img src="{{ asset($blog->thumbnail_image) }}" alt=""></a>
                                             </div>
-                                        </div><!-- /.blog-post-image -->
+                                        </div>
 
                                         <div class="blog-post-info text-left">
-                                            {{-- <h3 class="name"><a href="#">Voluptatem accusantium doloremque laudantium</a></h3> --}}
                                             <h3 class="name"><a href="{{ route('single.blog', ['id' => $blog->id, 'slug' => $blog->slug]) }}">{{ $blog->title }}</a></h3>
                                             <span class="info">By {{ $blog->relationWithUser->name }} &nbsp;|&nbsp; {{ \Carbon\Carbon::parse($blog->created_at)->diffForHumans() }} </span>
                                             <p class="text">{!! substr($blog->description, 0, 200) !!}.... <a href="{{ route('single.blog', ['id' => $blog->id, 'slug' => $blog->slug]) }}">Read More</a></p>

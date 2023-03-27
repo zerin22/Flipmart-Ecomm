@@ -21,4 +21,8 @@ class BlogComment extends Model
         return $this->belongsTo(User::class, 'auth_id', 'id');
     }
 
+    public function relationWithBlogReply()
+    {
+        return $this->hasMany(BlogcommentReply::class, 'blogcomment_id', 'id');
+    }
 }

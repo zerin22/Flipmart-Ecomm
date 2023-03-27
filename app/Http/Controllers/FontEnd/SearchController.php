@@ -31,8 +31,6 @@ class SearchController extends Controller
                                 ->orWhere('product_desc_en','LIKE','%'.$request->search.'%')
                                 ->orWhere('product_desc_bn','LIKE','%'.$request->search.'%')->take(10)->get();
         return view("layouts.fontend.productAutoSuggest", compact('products'));
-
-
     }
 
 }

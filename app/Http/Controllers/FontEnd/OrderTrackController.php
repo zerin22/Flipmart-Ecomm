@@ -22,9 +22,6 @@ class OrderTrackController extends Controller
             return redirect()->back()->with("fail", 'Product Not Found');
         }
 
-
-
-
     }
 
 }

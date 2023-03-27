@@ -31,7 +31,7 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                {{-- <th>Product Thumbnail</th> --}}
+                                <th>Product Thumbnail</th>
                                 <th>Comment</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -72,7 +72,7 @@
                                             </div>
 
                                             <!-- Modal For Delete -->
-                                            <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            {{-- <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
@@ -89,15 +89,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </td>
                                     </tr>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
     </div>
 @endsection

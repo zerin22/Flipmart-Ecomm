@@ -14,8 +14,21 @@
                             <div class="item_1">
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Comment</li>
+                                    <li class="breadcrumb-item active">Product Comments</li>
                                 </ul>
+                            </div>
+                            <div class="item_2">
+                                <label for="">Search By status</label>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                        Select Status
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('comments.store') }}">All</a>
+                                        <a class="dropdown-item" href="{{ route('comments.pending.search') }}">Pending</a>
+                                        <a class="dropdown-item" href="{{ route('comments.approved.search') }}">Approved</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -47,7 +60,11 @@
                                     </td>
                                     <td>{{ $item->description }}</td>
                                     <td>
-                                        <span class="badge badge-color" >{{ $item->status }}</span>
+                                        @if( $item->status == 'approved')
+                                            <span class="badge badge-fill badge-success">{{ $item->status }}</span>
+                                        @else
+                                            <span class="badge badge-fill badge-color">{{ $item->status }}</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -57,19 +74,17 @@
                                             <div class="dropdown-menu">
                                             @if( $item->status == 'pending' )
                                                 <a href="{{ route('comments.approved', ['id' => $item->id]) }}" class="dropdown-item">Approved</a>
-                                            {{-- @else
-                                                <a href="{{ route('comments.pending', ['id' => $item->id]) }}"  class="dropdown-item">Pending</a> --}}
+                                            @else
+                                                <a href="{{ route('comments.pending', ['id' => $item->id]) }}"  class="dropdown-item">Pending</a>
                                             @endif
-                                              <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
+
+                                            @if($item->status == 'approved')
+                                                <a class="dropdown-item" href="{{ route('adminComments.replay',$item->id) }}">Reply</a>
+                                            @endif
+
+                                                <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $item->id }}" >Delete</a>
                                             </div>
                                         </div>
-                                        {{-- @if( $item->status == 'pending' )
-                                            <a href="{{ route('comments.approved', $item->id )}}" class="btn btn-info mr-3">Approved</a>
-                                        @else
-                                            <a href="{{ route('comments.pending', $item->id )}}" class="btn btn-warning mr-3">Pending</a>
-                                        @endif
-
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal__{{ $item->id }}">Delete</button> --}}
 
                                         <!-- Modal For Delete -->
                                         <div class="modal fade" id="exampleModal__{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

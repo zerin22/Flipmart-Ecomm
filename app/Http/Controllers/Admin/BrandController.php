@@ -37,6 +37,17 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function image_setting($image)
+    {
+        $img_ext = strtolower($image->getClientOriginalExtension());
+        $hex_name = hexdec(uniqid());
+        $img_name = $hex_name . '.' . $img_ext;
+        $location = 'backend/images/brand/';
+        $last_image = $location. $img_name;
+        Image::make($image)->resize(116, 110)->save($last_image);
+        return $last_image;
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -50,12 +61,7 @@ class BrandController extends Controller
             'brand_image.required' => 'Image Field is Required',
         ]);
         $images = $request->file('brand_image');
-        $img_ext = strtolower($images->getClientOriginalExtension());
-        $hex_name = hexdec(uniqid());
-        $img_name = $hex_name . '.' . $img_ext;
-        $location = 'backend/images/brand/';
-        $last_image = $location. $img_name;
-        Image::make($images)->resize(116, 110)->save($last_image);
+        $last_image = $this->image_setting($images);
         $result = Brand::insert([
             'brand_name_bn' => $request->brand_name_bn,
             'brand_name_en' => $request->brand_name_en,
@@ -103,6 +109,7 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
+       $brand = Brand::findOrFail($id);
         $request->validate([
             'brand_name_bn' => 'required',
             'brand_name_en' => 'required',
@@ -112,38 +119,22 @@ class BrandController extends Controller
         ]);
 
         $images = $request->file('brand_image');
-        if($images != ""){
+        if($images != "")
+        {
             $img = Brand::findOrFail($id);
             $old_img = $img->brand_image;
             if(file_exists($old_img)){
                 unlink($old_img);
+                $last_image = $this->image_setting($images);
+                $brand->brand_image = $last_image;
             }
-            $img_ext = strtolower($images->getClientOriginalExtension());
-            $hex_name = hexdec(uniqid());
-            $img_name = $hex_name . '.' . $img_ext;
-            $location = 'backend/images/brand/';
-            $last_image = $location. $img_name;
-            Image::make($images)->resize(116, 110)->save($last_image);
-            Brand::findOrFail($id)->update([
-                'brand_name_bn' => $request->brand_name_bn,
-                'brand_name_en' => $request->brand_name_en,
-                'brand_slug_bn' => str_replace(' ', '-', $request->brand_name_bn),
-                'brand_slug_en' =>  strtolower(str_replace(' ', '-',$request->brand_name_en )),
-                'brand_image' => $last_image,
-                'updated_at'=> Carbon::now(),
-            ]);
-            return redirect()->route('brands.index');
-
-        }else{
-            Brand::findOrFail($id)->update([
-                'brand_name_bn' => $request->brand_name_bn,
-                'brand_name_en' => $request->brand_name_en,
-                'brand_slug_bn' => str_replace(' ', '-', $request->brand_name_bn),
-                'brand_slug_en' =>  strtolower(str_replace(' ', '-',$request->brand_name_en )),
-                'updated_at'=> Carbon::now(),
-            ]);
-            return redirect()->route('brands.index');
         }
+            $brand->brand_name_bn = $request->brand_name_bn;
+            $brand->brand_name_en = $request->brand_name_en;
+            $brand->brand_slug_bn = str_replace(' ', '-', $request->brand_name_bn);
+            $brand->brand_slug_en = strtolower(str_replace(' ', '-', $request->brand_name_en));
+            $brand->save();
+            return redirect()->route('brands.index')->with('success', 'Brand Update Success');
     }
 
     /**
@@ -154,7 +145,10 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        Brand::findOrFail($id)->delete();
+        // Brand::findOrFail($id)->delete();
+        $brand = Brand::findOrFail($id);
+        unlink($brand->brand_image);
+        $brand->delete();
         return redirect()->route('brands.index')->with('success', 'Data Delete success');
     }
 

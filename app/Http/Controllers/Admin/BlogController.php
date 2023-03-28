@@ -76,8 +76,6 @@ class BlogController extends Controller
         $blog->feature_image = $final_feature_image;
         $blog->save();
         return redirect()-> back()->with('success', 'Blog added success');
-
-
     }
 
     /**
@@ -159,6 +157,6 @@ class BlogController extends Controller
         unlink($blog->thumbnail_image);
         unlink($blog->feature_image);
         $blog->delete();
-        return redirect()-> back()->with('success', 'Blog deleted success');
+        return redirect()-> back()->with('success', 'Blog delete success');
     }
 }

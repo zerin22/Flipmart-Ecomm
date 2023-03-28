@@ -1,5 +1,5 @@
 @extends('layouts.fontend.fontend-master')
-@section('title', 'Blogs')
+@section('title'){{ $blog->title }} @endsection
 @section('content')
 
 <div class="body-content outer-top-xs" id="top-banner-and-menu">

@@ -96,25 +96,30 @@
                 @endforelse
             </div>
         </div>
-        {{-- @php
-            $popularBlogs = \App\Models\Blog::all()->get();
-        @endphp --}}
+        @php
+            $checkComments = \App\Models\BlogComment::select('blog_id', DB::raw('count(*) as total'))->groupBy('blog_id')->orderBy('total','desc')->limit(2)->get();
+        @endphp
 
         <div class="tab-pane m-t-20" id="popular">
-            <div class="blog-post inner-bottom-30 " >
-                <img class="img-responsive" src="{{ asset('fontend') }}/assets/images/blog-post/blog_big_01.jpg" alt="">
-                <h4><a href="blog-details.html">Simple Blog Post</a></h4>
-                    <span class="review">6 Comments</span>
-                <span class="date-time">12/06/16</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <div class="blog-post inner-bottom-30" >
+                @forelse ($checkComments as $checkComment)
+                    <img class="img-responsive" src="{{ asset($checkComment->relationWithBlog->thumbnail_image) }}" alt="">
+                    <h4><a href="{{ route('single.blog', ['id' => $checkComment->relationWithBlog->id, 'slug' => $checkComment->relationWithBlog->slug]) }}"></a>{{ $checkComment->relationWithBlog->title }}</h4>
+                    <span class="date-time">{{ \Carbon\Carbon::parse($blog->created_at)->format('l m F Y') }}</span>
+                    <p class="text">{!! Str::limit($checkComment->relationWithBlog->description, 70) !!}.... <a href="{{ route('single.blog', ['id' => $checkComment->relationWithBlog->id, 'slug' => $checkComment->relationWithBlog->slug]) }}">Read More</a></p>
+                @empty
+                    <h3 class="text-danger font-weight-bold pb-3">
+                        @if(session()->get('language') == 'bangle') পাওয়া যায় নি @else Not Found @endif
+                    </h3>
+                @endforelse
             </div>
-            <div class="blog-post" >
+            {{-- <div class="blog-post" >
                 <img class="img-responsive" src="{{ asset('fontend') }}/assets/images/blog-post/blog_big_02.jpg" alt="">
                 <h4><a href="blog-details.html">Simple Blog Post</a></h4>
                 <span class="review">6 Comments</span>
                 <span class="date-time">23/06/16</span>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

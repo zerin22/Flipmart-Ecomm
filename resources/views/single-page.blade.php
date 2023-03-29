@@ -11,7 +11,6 @@
 
 @section('content')
 
-    <!-- ============================================== HEADER : END ============================================== -->
     <div class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-inner">
@@ -30,12 +29,11 @@
                         <div class="home-banner outer-top-n">
                             <img src="{{ asset('fontend') }}/assets/images/banners/LHS-banner.jpg" alt="Image">
                         </div>
-                        <!-- =============== HOT DEALS ========== -->
+
                         @include('layouts.fontend.inc.hot-deals')
-                        <!-- =============== HOT DEALS: END ================= -->
-                        <!-- ============ Testimonials ================== -->
+
                         @include('layouts.fontend.inc.testmonial')
-                        <!-- ========== Testimonials: END ============ -->
+
                     </div>
                 </div><!-- /.sidebar -->
                 <div class='col-md-9'>
@@ -67,11 +65,10 @@
                                                 </a>
                                             </div>
                                             @endforeach
-                                        </div><!-- /#owl-single-product-thumbnails -->
-                                    </div><!-- /.gallery-thumbs -->
-
-                                </div><!-- /.single-product-gallery -->
-                            </div><!-- /.gallery-holder -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class='col-sm-6 col-md-7 product-info-block'>
                                 <div class="product-info">
                                     <h1 class="name" id="Pname">
@@ -359,7 +356,6 @@
                                                     </div>
                                                 @endif
                                             @endauth
-
                                         </div>
                                     </div>
 
@@ -439,8 +435,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- =========== UPSELL PRODUCTS ============ -->
                     <section class="section featured-product wow fadeInUp">
                         <h3 class="section-title">
                             @if(session()->get('language') == 'bangle') সম্পর্কিত পণ্য @else Related products @endif
@@ -564,20 +558,15 @@
 
 
 
-                    </section><!-- /.section -->
-                    <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
+                    </section>
 
                 </div><!-- /.col -->
                 <div class="clearfix"></div>
-            </div><!-- /.row -->
-            <!-- ============================================== BRANDS CAROUSEL ============================================== -->
+            </div>
 
             @include('layouts.fontend.brandlogo');
-
-            <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
-    </div><!-- /.body-content -->
-
-    <!-- ============================================================= FOOTER ============================================================= -->
+	    </div><!-- /.container -->
+    </div>
 
 @endsection
 

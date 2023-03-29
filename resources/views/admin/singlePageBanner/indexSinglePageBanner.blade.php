@@ -1,7 +1,7 @@
 @extends('layouts.admin.admin-master')
-@section('title', 'DiscountBanner')
+@section('title', 'SinglePageBanner')
 @section('banner')menu-is-opening menu-open @endsection
-@section('allBannerActive') active @endsection
+@section('allSingleBannerActive') active @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -14,12 +14,12 @@
                             <div class="item_1">
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Discount Bannaer</li>
+                                    <li class="breadcrumb-item active">Page Bannaer</li>
                                 </ul>
                             </div><!-- /.col -->
                             <div class="item_2">
-                                @if (count($banners) <= 1)
-                                <a class="btn btn-primary" href="{{ route('banner.create') }}">Add New Banner</a>
+                                @if (count($banners) <= 0)
+                                <a class="btn btn-primary" href="{{ route('singlePageBanner.create') }}">Add New Banner</a>
                                 @endif
                             </div>
                         </div>
@@ -45,19 +45,10 @@
                             @foreach($banners as $banner)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td><img width="200px" height="150px" src="{{ asset($banner->image_left)  }}" alt=""></td>
+                                    <td><img width="200px" height="150px" src="{{ asset($banner->image)  }}" alt=""></td>
                                     <td>
-                                        {{-- <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                             Action
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ route('banner.edit', $banner->id) }}">Edit</a>
-
-                                            </div>
-                                        </div> --}}
                                         <span class="d-flex justify-content-center">
-                                            <a href=" {{ route('banner.edit', $banner->id) }} " class="btn btn-info">Edit</a>
+                                            <a href=" {{ route('singlePageBanner.edit', $banner->id) }} " class="btn btn-info">Edit</a>
                                         </span>
                                     </td>
                                 </tr>

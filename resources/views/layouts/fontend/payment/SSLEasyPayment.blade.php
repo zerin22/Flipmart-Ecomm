@@ -65,7 +65,7 @@
         </div><!-- /.container -->
     </div><!-- /.body-content -->
     {{-- easy payment system --}}
-@endsection()
+@endsection
 @section('scripts')
     <script type="text/javascript">
         var obj = {};
@@ -94,7 +94,6 @@
         })(window, document);
     </script>
 
-
     <script>
         (function (window, document) {
             var loader = function () {
@@ -107,5 +106,5 @@
         })(window, document);
     </script>
 
-@endsection()
+@endsection
 

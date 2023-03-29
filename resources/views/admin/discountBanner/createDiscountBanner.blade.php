@@ -1,6 +1,7 @@
 @extends('layouts.admin.admin-master')
 @section('title', 'Add DiscountBanner')
-@section('bannerActive') active @endsection
+@section('banner')menu-is-opening menu-open @endsection
+@section('allBannerActive') active @endsection
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -12,8 +13,8 @@
                     <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                         <div class="item_1">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Discount Banner</li>
+                                <li class="breadcrumb-item"><a href="{{ route('banner.index') }}">All Discount Banner</a></li>
+                                <li class="breadcrumb-item active">Discount Banner Create</li>
                             </ul>
                         </div>
                     </div>
@@ -34,9 +35,9 @@
                             <form action="{{ route('banner.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Banner Image: (848px 201px)</label>
+                                    <label>Banner Image: (850px 200px)</label>
                                     <input type="file" onchange="document.getElementById('img_id_left').src=window.URL.createObjectURL(this.files[0])" name="image_left" class="mb-3">
-                                    <img id="img_id_left" width="848px" height="201px" src="{{ asset('backend') }}/images/brand/default-image.jpg" alt="">
+                                    <img id="img_id_left" width="850px" height="200px" src="{{ asset('backend') }}/images/brand/default-image.jpg" alt="">
                                     @error('image_left')
                                         <p class="text-danger font-weight-bold">{{ $message }}</p>
                                     @enderror

@@ -124,12 +124,40 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('banner.index') }}" class="nav-link @yield('bannerActive')">
                         <i class="nav-icon fas fa-tv"></i>
                         <p>Discount Banner</p>
                     </a>
+                </li> --}}
+
+                <li class="nav-item @yield('banner')">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tv"></i>
+                        <p>Banner<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('banner.index') }}" class="nav-link @yield('allBannerActive')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Discount Banner</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('bannerTwo.index') }}" class="nav-link @yield('allBannerTwoActive')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Discount Banner Two</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('singlePageBanner.index') }}" class="nav-link @yield('allSingleBannerActive')">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Single Page Banner</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
 
                 <li class="nav-item @yield('coupon')">
                     <a href="#" class="nav-link">
@@ -288,8 +316,8 @@
 
                 <li class="nav-item @yield('comment')">
                     <a href="{{ route('comments.store') }}" class="nav-link @yield('commentPending')">
-                        <i class="nav-icon fas fa-comment-dots"></i>
-                        <p>BlogComments</p>
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>Product-Comments</p>
                     </a>
                 </li>
                 {{-- <li class="nav-item @yield('comment')">

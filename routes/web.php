@@ -23,6 +23,8 @@ use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DiscountBannerController;
+use App\Http\Controllers\Admin\DiscountBannerTwoController;
+use App\Http\Controllers\Admin\PageBannerController;
 use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\StockManagement;
 
@@ -47,6 +49,7 @@ use App\Http\Controllers\FontEnd\OrderTrackController;
 use App\Http\Controllers\FontEnd\SearchController;
 
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Models\DiscountBannerTwo;
 use Illuminate\Support\Facades\Auth;
 
 Auth ::routes();
@@ -205,6 +208,12 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
     //Discount Banner
     Route::resource('banner', DiscountBannerController::class);
 
+    //Discount Banner Two
+    Route::resource('bannerTwo', DiscountBannerTwoController::class);
+
+    //Single Page Banner
+    Route::resource('singlePageBanner', PageBannerController::class);
+
     //Blog
     Route::resource('blog', BlogController::class);
 
@@ -307,36 +316,44 @@ Route::group([ 'middleware'=> ['user', 'auth']], function() {
     Route::get('/single/blog/{id}/{slug}', [FontEndController::class, 'singleBlog'])->name('single.blog');
     Route::post('/blogcomment/more', [FontEndController::class, 'commentMore'])->name('blogcomments.load-more');
 
-
     // ====================== card settings start ======================
     Route::get('/product/card/view/{id}', [CardController::class, 'productCardView']);
     Route::post('/product/card/add/{id}', [CardController::class, 'productAddToCard']);
     Route::get('/ProductMiniCardView', [CardController::class, 'ProductMiniCardView']);
     Route::get('/miniCartRemove/{rowId}', [CardController::class, 'miniCartRemove']);
     // ==================== card settings end ============================
+
     //==================== tag wise product show ==========================
     Route::get('/product/tags/{tag}', [FontEndController::class, 'tagWiseProductsShow']);
+
+
     // ============================ subCategory wise product show =========
     Route::get('subCategory/product/{id}', [FontEndController::class, 'subcategoryWiseProductShow']);
     Route::get('subSubCategory/product/{id}', [FontEndController::class, 'subSubcategoryWiseProductShow']);
+
     // ===================== Frontend Language route =======================
     Route::get('/bangle/language/', [LanguageController::class, 'Bangle'])->name('bangle.language');
     Route::get('/english/language/', [LanguageController::class, 'English'])->name('english.language');
+
     //========================= wishlist start ==============================
     Route::get('/wishListPageView', [wishlistController::class, 'wishlistPageView']);
     Route::get('/getWishListData', [wishlistController::class, 'getWishListData']);
     Route::get('/removeWishlistData/{id}', [wishlistController::class, 'removeWishlistData']);
     Route::post('/add-to-userWishList/{product_id}', [wishlistController::class, 'addWishlist']);
+
     //========================= wishlist end ==================================
     Route::get('my-cart/', [CartPageController::class, 'cartIndex'])->name('cart');
     Route::get('checkout', [CartPageController::class, 'checkout'])->name('checkout');
+
     // social login route
     Route::get('login/google', [LoginController::class, 'loginWithGoogle'])->name('login.google');
     Route::get('login/google/callback/', [LoginController::class, 'loginWithGoogleCallback']);
     Route::get('login/github', [LoginController::class, 'loginWithGithub'])->name('login.facebook');
     Route::get('login/github/callback/', [LoginController::class, 'loginWithGithubCallback']);
+
     // order tracking route
     Route::post('order/track/', [OrderTrackController::class, 'orderTrack'])->name('order.track');
+
     // product search
     Route::get('product-search', [SearchController::class, 'productSearch'])->name('search.product');
     Route::post('searchProductByAjax', [SearchController::class, 'searchProductByAjax']);

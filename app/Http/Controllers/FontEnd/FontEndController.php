@@ -73,10 +73,31 @@ class FontEndController extends Controller
     }
 
     // tags wise product show
-    public function tagWiseProductsShow($tag){
+    public function tagWiseProductsShow(Request $request, $tag){
+
+        $baseLink = 'product/tags';
         $categorys = Category::orderBy('id', 'DESC')->get();
-        $products = Product::where('status', 1)->where('product_tags_en', $tag)->orWhere('product_tags_bn',$tag)->orderBy('id','DESC')->paginate(10);
-        return view('layouts.fontend.products-tag-page', compact('products', 'categorys'));
+        $tag_name = $tag;
+        $sort = '';
+        if($request->sort != ""){
+            $sort = $request->sort;
+        }
+        if($baseLink == null ){
+            return view('errors.404');
+        }elseif($sort == 'lowestPrice') {
+            $products = Product::where('status', 1)->where('product_tags_en', $tag)->orWhere('product_tags_bn',$tag)->orderBy('selling_price','ASC')->paginate(10);
+
+        }elseif($sort == 'heightPrice') {
+            $products = Product::where('status', 1)->where('product_tags_en', $tag)->orWhere('product_tags_bn',$tag)->orderBy('selling_price','DESC')->paginate(10);
+        }elseif($sort == 'priceAToZname') {
+            $products = Product::where('status', 1)->where('product_tags_en', $tag)->orWhere('product_tags_bn',$tag)->orderBy('product_name_en','ASC')->paginate(10);
+        }elseif($sort == 'priceZToAname') {
+            $products = Product::where('status', 1)->where('product_tags_en', $tag)->orWhere('product_tags_bn',$tag)->orderBy('product_name_en','DESC')->paginate(10);
+        }else {
+            $products = Product::where('status', 1)->where('product_tags_en', $tag)->orWhere('product_tags_bn',$tag)->orderBy('id','DESC')->paginate(10);
+        }
+
+        return view('layouts.fontend.products-tag-page', compact('products', 'categorys', 'sort','baseLink', 'tag_name'));
     }
 
 

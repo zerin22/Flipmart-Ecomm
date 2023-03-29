@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('discount_banners', function (Blueprint $table) {
+        Schema::create('page_banners', function (Blueprint $table) {
             $table->id();
-            $table->string('image_left')->nullable();
+            $table->string('image')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('discount_banners');
+        Schema::dropIfExists('page_banners');
     }
 };

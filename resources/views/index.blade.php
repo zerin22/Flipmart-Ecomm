@@ -761,7 +761,7 @@
 
                     <!-- ================ FEATURED PRODUCTS : END ================== -->
                     <!-- ================== WIDE PRODUCTS =================== -->
-                    <div class="wide-banners wow fadeInUp outer-bottom-xs">
+                    {{-- <div class="wide-banners wow fadeInUp outer-bottom-xs">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="wide-banner cnt-strip">
@@ -781,7 +781,7 @@
                             </div><!-- /.col -->
 
                         </div><!-- /.row -->
-                    </div><!-- /.wide-banners -->
+                    </div><!-- /.wide-banners --> --}}
                     <!-- ============= ======== WIDE PRODUCTS : END ======== =================== -->
 
                     <!-- ==================== BEST SELLER ======================= -->

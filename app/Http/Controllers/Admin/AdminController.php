@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdminBio;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +15,10 @@ use Intervention\Image\Facades\Image;
 class AdminController extends Controller
 {
    public function index(){
-       return view('admin.home');
+        $totalProduct = Product::count();
+        $totalOrder = Order::where('status', 'pending')->count();
+        $totalUser = User::where('role_id', '2')->count();
+        return view('admin.home', compact('totalProduct','totalOrder', 'totalUser'));
    }
 
    public function adminProfileShow(){

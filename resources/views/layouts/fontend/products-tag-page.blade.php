@@ -1,7 +1,5 @@
 @extends('layouts.fontend.fontend-master')
-
 @section('title', 'Product tag')
-
 @section('content')
 
             @php
@@ -18,8 +16,8 @@
         <div class="container">
             <div class="breadcrumb-inner">
                 <ul class="list-inline list-unstyled">
-                    <li><a href="#">Home</a></li>
-                    <li class='active'>Handbags</li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li class='active'>Product tag</li>
                 </ul>
             </div><!-- /.breadcrumb-inner -->
         </div><!-- /.container -->
@@ -106,10 +104,8 @@
 
                                     </div><!-- /.accordion -->
                                 </div><!-- /.sidebar-widget-body -->
-                            </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
+                            </div>
 
-                            <!-- ============================================== PRICE SILDER============================================== -->
                             <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Price Slider</h4>
@@ -127,9 +123,8 @@
                                     </div><!-- /.price-range-holder -->
                                     <a href="#" class="lnk btn btn-primary">Show Now</a>
                                 </div><!-- /.sidebar-widget-body -->
-                            </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== PRICE SILDER : END ============================================== -->
-                            <!-- ============================================== MANUFACTURES============================================== -->
+                            </div>
+
                             <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Manufactures</h4>
@@ -146,8 +141,7 @@
                                     <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
                                 </div><!-- /.sidebar-widget-body -->
                             </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== MANUFACTURES: END ============================================== -->
-                            <!-- ============================================== COLOR============================================== -->
+
                             <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Colors</h4>
@@ -163,8 +157,7 @@
                                     </ul>
                                 </div><!-- /.sidebar-widget-body -->
                             </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== COLOR: END ============================================== -->
-                            <!-- ============================================== COMPARE============================================== -->
+
                             <div class="sidebar-widget wow fadeInUp outer-top-vs" style="margin-bottom: 30px">
                                 <h3 class="section-title">Compare products</h3>
                                 <div class="sidebar-widget-body">
@@ -173,31 +166,10 @@
                                     </div><!-- /.compare-report -->
                                 </div><!-- /.sidebar-widget-body -->
                             </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== COMPARE: END ============================================== -->
-                            <!-- ============================================== PRODUCT TAGS ============================================== -->
 
                             @include('layouts.fontend.inc.products-tags')
 
-                            <!-- ============================================== PRODUCT TAGS : END ============================================== -->
-                            <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-                                <div id="advertisement" class="advertisement">
-                                    <div class="item">
-                                        <div class="avatar"><img src="{{ asset('fontend') }}/assets/images/testimonials/member1.png" alt="Image"></div>
-                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                        <div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->
-                                    </div><!-- /.item -->
-
-                                    <div class="item">
-                                        <div class="avatar"><img src="{{ asset('fontend') }}/assets/images/testimonials/member3.png" alt="Image"></div>
-                                        <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                        <div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>
-                                    </div><!-- /.item -->
-
-
-                                </div><!-- /.owl-carousel -->
-                            </div>
-
-                            <!-- ============================================== Testimonials: END ============================================== -->
+                            @include('layouts.fontend.inc.testmonial')
 
                             <div class="home-banner">
                                 <img src="{{ asset('fontend') }}/assets/images/banners/LHS-banner.jpg" alt="Image">
@@ -207,7 +179,6 @@
                     </div><!-- /.sidebar-module-container -->
                 </div><!-- /.sidebar -->
                 <div class='col-md-9'>
-                    <!-- ========================================== SECTION – HERO ========================================= -->
 
                     <div id="category" class="category-carousel hidden-xs">
                         <div class="item">
@@ -232,10 +203,6 @@
                         </div>
                     </div>
 
-
-
-
-                    <!-- ========================================= SECTION – HERO : END ========================================= -->
                     <div class="clearfix filters-container m-t-10">
                         <div class="row">
                             <div class="col col-sm-6 col-md-2">
@@ -249,26 +216,23 @@
                                 </div><!-- /.filter-tabs -->
                             </div>
                             <div class="col col-sm-12 col-md-6">
-                                <div class="col col-sm-3 col-md-6 no-padding">
-                                    <div class="lbl-cnt">
-                                        <span class="lbl">Sort by</span>
-                                        <div class="fld inline">
-                                            <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                                <button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
-                                                    Position <span class="caret"></span>
-                                                </button>
+                                <div class="lbl-cnt">
+                                    <span class="lbl">Sort by</span>
+                                    <div class="fld inline">
+                                        <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
 
-                                                <ul role="menu" class="dropdown-menu">
-                                                    <li role="presentation"><a href="#">position</a></li>
-                                                    <li role="presentation"><a href="#">Price:Lowest first</a></li>
-                                                    <li role="presentation"><a href="#">Price:HIghest first</a></li>
-                                                    <li role="presentation"><a href="#">Product Name:A to Z</a></li>
-                                                </ul>
-                                            </div>
-                                        </div><!-- /.fld -->
-                                    </div><!-- /.lbl-cnt -->
-                                </div><!-- /.col -->
-                                <div class="col col-sm-3 col-md-6 no-padding">
+                                            <select class="form-control" id="tagpagesortBy">
+                                                <option value>Positionss</option>
+                                                <option {{ $sort == 'lowestPrice'? 'selected': "" }} value="lowestPrice">Price: Lowest first</option>
+                                                <option {{ $sort == 'heightPrice'? 'selected': "" }} value="heightPrice">Price: Height first</option>
+                                                <option {{ $sort == 'priceAToZname'? 'selected': "" }} value="priceAToZname">Product Name: A to Z</option>
+                                                <option {{ $sort == 'priceZToAname'? 'selected': "" }} value="priceZToAname">Product Name: Z to A</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <div class="col col-sm-3 col-md-6 no-padding">
                                     <div class="lbl-cnt">
                                         <span class="lbl">Show</span>
                                         <div class="fld inline">
@@ -287,7 +251,7 @@
                                             </div>
                                         </div><!-- /.fld -->
                                     </div><!-- /.lbl-cnt -->
-                                </div><!-- /.col -->
+                                </div><!-- /.col --> --}}
                             </div>
                             <div class="col col-sm-6 col-md-4 text-right">
                                 {{ $products->links() }}
@@ -527,5 +491,16 @@
     </div><!-- /.body-content -->
 
 
-@endsection()
+@endsection
 
+@section('scripts')
+
+    <script>
+        $("#tagpagesortBy").change(function(e){
+            e.preventDefault();
+            let data = $("#tagpagesortBy").val();
+            window.location = "{{ url(''.$baseLink.'') }}/{{ $tag_name }}?sort="+data;
+        })
+    </script>
+
+@endsection

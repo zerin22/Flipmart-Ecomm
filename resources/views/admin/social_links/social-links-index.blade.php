@@ -12,7 +12,7 @@
                             <div class="item_1 ">
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Social Links</li>
+                                    <li class="breadcrumb-item active">Settings</li>
                                 </ul>
                             </div>
 
@@ -59,11 +59,6 @@
                                                     <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModal__{{ $socialLink->id }}">Edit</a>
                                                     <a class="dropdown-item deleteBtn"  data-toggle="modal" data-target="#exampleModalDelete__{{ $socialLink->id }}">Delete</a>
                                                 </div>
-                                            {{-- <span class="d-flex justify-content-center">
-                                                <button type="button" class="btn btn-info mr-3" data-toggle="modal" data-target="#exampleModal__{{ $socialLink->id }}">Edit</button>
-
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete__{{ $socialLink->id }}">Delete</button>
-                                            </span> --}}
 
 
                                             <!-- Modal For Delete -->
@@ -144,6 +139,12 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="card m-auto">
+
                     </div>
                 </div>
             </div>

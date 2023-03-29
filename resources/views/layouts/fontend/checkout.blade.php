@@ -183,7 +183,7 @@
     </div><!-- /.body-content -->
 
 
-@endsection()
+@endsection
 
 
 

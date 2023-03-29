@@ -104,9 +104,9 @@
                                     </div><!-- /.accordion -->
                                 </div><!-- /.sidebar-widget-body -->
                             </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
+                            <!-- ================== SIDEBAR CATEGORY : END === -->
 
-                            <!-- ============================================== PRICE SILDER============================================== -->
+                            <!-- ===================== PRICE SILDER===================== -->
                             <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Price Slider</h4>
@@ -125,8 +125,8 @@
                                     <a href="#" class="lnk btn btn-primary">Show Now</a>
                                 </div><!-- /.sidebar-widget-body -->
                             </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== PRICE SILDER : END ============================================== -->
-                            <!-- ============================================== MANUFACTURES============================================== -->
+                            <!--==== PRICE SILDER : END ========================= -->
+                            <!-- ===== MANUFACTURES===-->
                             <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Manufactures</h4>
@@ -158,53 +158,26 @@
                                         <li><a href="#">Brown</a></li>
                                         <li><a href="#">Teal</a></li>
                                     </ul>
-                                </div><!-- /.sidebar-widget-body -->
-                            </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== COLOR: END ============================================== -->
-                            <!-- ============================================== COMPARE============================================== -->
+                                </div>
+                            </div>
+
                             <div class="sidebar-widget wow fadeInUp outer-top-vs" style="margin-bottom: 30px">
                                 <h3 class="section-title">Compare products</h3>
                                 <div class="sidebar-widget-body">
                                     <div class="compare-report">
                                         <p>You have no <span>item(s)</span> to compare</p>
-                                    </div><!-- /.compare-report -->
-                                </div><!-- /.sidebar-widget-body -->
-                            </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== COMPARE: END ============================================== -->
-                            <!-- ============================================== PRODUCT TAGS ============================================== -->
+                                    </div>
+                                </div>
+                            </div>
 
                         @include('layouts.fontend.inc.products-tags')
+                        @include('layouts.fontend.inc.testmonial')
 
-                        <!-- ============================================== PRODUCT TAGS : END ============================================== -->
-                            <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-                                <div id="advertisement" class="advertisement">
-                                    <div class="item">
-                                        <div class="avatar"><img src="{{ asset('fontend') }}/assets/images/testimonials/member1.png" alt="Image"></div>
-                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                        <div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->
-                                    </div><!-- /.item -->
+                        </div>
+                    </div>
+                </div>
 
-                                    <div class="item">
-                                        <div class="avatar"><img src="{{ asset('fontend') }}/assets/images/testimonials/member3.png" alt="Image"></div>
-                                        <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                        <div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>
-                                    </div><!-- /.item -->
-
-
-                                </div><!-- /.owl-carousel -->
-                            </div>
-
-                            <!-- ============================================== Testimonials: END ============================================== -->
-
-                            <div class="home-banner">
-                                <img src="{{ asset('fontend') }}/assets/images/banners/LHS-banner.jpg" alt="Image">
-                            </div>
-
-                        </div><!-- /.sidebar-filter -->
-                    </div><!-- /.sidebar-module-container -->
-                </div><!-- /.sidebar -->
                 <div class='col-md-9'>
-                    <!-- ========================================== SECTION – HERO ========================================= -->
 
                     <div id="category" class="category-carousel hidden-xs">
                         <div class="item">
@@ -229,10 +202,6 @@
                         </div>
                     </div>
 
-
-
-
-                    <!-- ========================================= SECTION – HERO : END ========================================= -->
                     <div class="clearfix filters-container m-t-10">
                         <div class="row">
                             <div class="col col-sm-6 col-md-2">
@@ -246,11 +215,10 @@
                                 </div><!-- /.filter-tabs -->
                             </div>
                             <div class="col col-sm-12 col-md-6">
-
-                                    <div class="lbl-cnt">
-                                        <span class="lbl">Sort by</span>
-                                        <div class="fld inline">
-                                            <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
+                                <div class="lbl-cnt">
+                                    <span class="lbl">Sort by</span>
+                                    <div class="fld inline">
+                                        <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
 
                                             <select class="form-control" id="sortBy">
                                                 <option value>Position</option>
@@ -260,11 +228,9 @@
                                                 <option {{ $sort == 'priceZToAname'? 'selected': "" }} value="priceZToAname">Product Name: Z to A</option>
                                             </select>
 
-                                            </div>
-                                        </div><!-- /.fld -->
-
+                                        </div>
+                                    </div><!-- /.fld -->
                                 </div><!-- /.col -->
-
                             </div>
                             <div class="col col-sm-6 col-md-4 text-right">
                                 {{ $products->links() }}

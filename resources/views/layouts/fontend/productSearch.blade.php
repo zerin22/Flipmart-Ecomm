@@ -66,11 +66,9 @@
                                         <li><a href="#">Chanel</a></li>
                                         <li><a href="#">Other Brand</a></li>
                                     </ul>
-                                    <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
                                 </div><!-- /.sidebar-widget-body -->
                             </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== MANUFACTURES: END ============================================== -->
-                            <!-- ============================================== COLOR============================================== -->
+
                             <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Colors</h4>
@@ -85,9 +83,7 @@
                                         <li><a href="#">Teal</a></li>
                                     </ul>
                                 </div><!-- /.sidebar-widget-body -->
-                            </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== COLOR: END ============================================== -->
-                            <!-- ============================================== COMPARE============================================== -->
+                            </div>
                             <div class="sidebar-widget wow fadeInUp outer-top-vs" style="margin-bottom: 30px">
                                 <h3 class="section-title">Compare products</h3>
                                 <div class="sidebar-widget-body">
@@ -96,31 +92,11 @@
                                     </div><!-- /.compare-report -->
                                 </div><!-- /.sidebar-widget-body -->
                             </div><!-- /.sidebar-widget -->
-                            <!-- ============================================== COMPARE: END ============================================== -->
-                            <!-- ============================================== PRODUCT TAGS ============================================== -->
+
 
                         @include('layouts.fontend.inc.products-tags')
 
-                        <!-- ============================================== PRODUCT TAGS : END ============================================== -->
-                            <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-                                <div id="advertisement" class="advertisement">
-                                    <div class="item">
-                                        <div class="avatar"><img src="{{ asset('fontend') }}/assets/images/testimonials/member1.png" alt="Image"></div>
-                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                        <div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->
-                                    </div><!-- /.item -->
-
-                                    <div class="item">
-                                        <div class="avatar"><img src="{{ asset('fontend') }}/assets/images/testimonials/member3.png" alt="Image"></div>
-                                        <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                                        <div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>
-                                    </div><!-- /.item -->
-
-
-                                </div><!-- /.owl-carousel -->
-                            </div>
-
-                            <!-- ============================================== Testimonials: END ============================================== -->
+                        @include('layouts.fontend.inc.testmonial')
 
                             <div class="home-banner">
                                 <img src="{{ asset('fontend') }}/assets/images/banners/LHS-banner.jpg" alt="Image">

@@ -69,6 +69,7 @@
     </div>
 </div>
 <!-- =============== CATEGORY : END ========= -->
+
 <div class="sidebar-widget outer-bottom-xs wow fadeInUp">
     <h3 class="section-title">tab widget</h3>
     <ul class="nav nav-tabs">
@@ -90,9 +91,13 @@
                     <span class="date-time">{{ \Carbon\Carbon::parse($blog->created_at)->format('l m F Y') }}</span>
                     <p class="text">{!! Str::limit($recentBlog->description, 70) !!}.... <a href="{{ route('single.blog', ['id' => $recentBlog->id, 'slug' => $recentBlog->slug]) }}">Read More</a></p>
                 @empty
-                    <h3 class="text-danger font-weight-bold pb-3">
-                        @if(session()->get('language') == 'bangle') পাওয়া যায় নি @else Not Found @endif
-                    </h3>
+                <span style="color:red; font-weight:700">
+                    @if(session()->get('language') == 'bangle')
+                        পাওয়া যায় নি
+                    @else
+                       Not Found
+                    @endif
+                </span>
                 @endforelse
             </div>
         </div>
@@ -108,18 +113,15 @@
                     <span class="date-time">{{ \Carbon\Carbon::parse($blog->created_at)->format('l m F Y') }}</span>
                     <p class="text">{!! Str::limit($checkComment->relationWithBlog->description, 70) !!}.... <a href="{{ route('single.blog', ['id' => $checkComment->relationWithBlog->id, 'slug' => $checkComment->relationWithBlog->slug]) }}">Read More</a></p>
                 @empty
-                    <h3 class="text-danger font-weight-bold pb-3">
-                        @if(session()->get('language') == 'bangle') পাওয়া যায় নি @else Not Found @endif
-                    </h3>
+                    <span style="color:red; font-weight:700">
+                        @if(session()->get('language') == 'bangle')
+                            পাওয়া যায় নি
+                        @else
+                            Not Found
+                        @endif
+                    </span>
                 @endforelse
             </div>
-            {{-- <div class="blog-post" >
-                <img class="img-responsive" src="{{ asset('fontend') }}/assets/images/blog-post/blog_big_02.jpg" alt="">
-                <h4><a href="blog-details.html">Simple Blog Post</a></h4>
-                <span class="review">6 Comments</span>
-                <span class="date-time">23/06/16</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            </div> --}}
         </div>
     </div>
 </div>

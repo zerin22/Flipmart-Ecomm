@@ -49,7 +49,6 @@ use App\Http\Controllers\FontEnd\OrderTrackController;
 use App\Http\Controllers\FontEnd\SearchController;
 
 use App\Http\Controllers\SslCommerzPaymentController;
-use App\Models\DiscountBannerTwo;
 use Illuminate\Support\Facades\Auth;
 
 Auth ::routes();
@@ -207,12 +206,15 @@ Route::group(['prefix' => 'admin', 'middleware'=> ['admin', 'auth'] ], function(
 
     //Discount Banner
     Route::resource('banner', DiscountBannerController::class);
+    Route::post('banner/on', [DiscountBannerController::class, 'pageBannerStatusOn'])->name('discount.banner.on');
 
     //Discount Banner Two
     Route::resource('bannerTwo', DiscountBannerTwoController::class);
+    Route::post('bannerTwo/on', [DiscountBannerTwoController::class, 'pageBannerStatusOn'])->name('discount.bannerTwo.on');
 
     //Single Page Banner
     Route::resource('singlePageBanner', PageBannerController::class);
+    Route::post('pageBanner', [PageBannerController::class, 'pageBannerStatusOn'])->name('page.banner.on');
 
     //Blog
     Route::resource('blog', BlogController::class);

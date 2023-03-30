@@ -42,7 +42,7 @@ class PageBannerController extends Controller
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         $location = 'backend/images/discountbanner/';
         $final_image = $location.$name_gen;
-        Image::make($image)->resize(848, 201)->save($final_image);
+        Image::make($image)->resize(850, 360)->save($final_image);
         return $final_image;
     }
 
@@ -122,5 +122,15 @@ class PageBannerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //status Check
+    public function pageBannerStatusOn(Request $request)
+    {
+        $product = PageBanner::first();
+        $product->update([
+            'status' => $request->status
+        ]);
+        return response()->json();
     }
 }

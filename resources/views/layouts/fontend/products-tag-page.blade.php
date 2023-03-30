@@ -179,30 +179,15 @@
                     </div><!-- /.sidebar-module-container -->
                 </div><!-- /.sidebar -->
                 <div class='col-md-9'>
-
-                    <div id="category" class="category-carousel hidden-xs">
-                        <div class="item">
-                            <div class="image">
-                                <img src="{{ asset('fontend') }}/assets/images/banners/cat-banner-1.jpg" alt="" class="img-responsive">
+                    @if($pageBanner->status == 'approved')
+                        <div id="category" class="category-carousel hidden-xs">
+                            <div class="item">
+                                <div class="image">
+                                    <img src="{{ asset($pageBanner->image) }}" alt="Add Image" class="img-responsive">
+                                </div>
                             </div>
-                            <div class="container-fluid">
-                                <div class="caption vertical-top text-left">
-                                    <div class="big-text">
-                                        Big Sale
-                                    </div>
-
-                                    <div class="excerpt hidden-sm hidden-md">
-                                        Save up to 49% off
-                                    </div>
-                                    <div class="excerpt-normal hidden-sm hidden-md">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                                    </div>
-
-                                </div><!-- /.caption -->
-                            </div><!-- /.container-fluid -->
                         </div>
-                    </div>
-
+                    @endif
                     <div class="clearfix filters-container m-t-10">
                         <div class="row">
                             <div class="col col-sm-6 col-md-2">
@@ -232,26 +217,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="col col-sm-3 col-md-6 no-padding">
-                                    <div class="lbl-cnt">
-                                        <span class="lbl">Show</span>
-                                        <div class="fld inline">
-                                            <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
-                                                <button data-toggle="dropdown" type="button" class="btn dropdown-toggle">
-                                                    1 <span class="caret"></span>
-                                                </button>
-
-                                                <ul role="menu" class="dropdown-menu">
-                                                    <li role="presentation"><a href="#">1</a></li>
-                                                    <li role="presentation"><a href="#">2</a></li>
-                                                    <li role="presentation"><a href="#">3</a></li>
-                                                    <li role="presentation"><a href="#">4</a></li>
-                                                    <li role="presentation"><a href="#">5</a></li>
-                                                </ul>
-                                            </div>
-                                        </div><!-- /.fld -->
-                                    </div><!-- /.lbl-cnt -->
-                                </div><!-- /.col --> --}}
                             </div>
                             <div class="col col-sm-6 col-md-4 text-right">
                                 {{ $products->links() }}
@@ -352,7 +317,7 @@
                                                 </div><!-- /.products -->
                                             </div>
                                             @empty
-                                            <span style="color:red; font-weight:700">
+                                            <span style="color:red; font-weight:700;">
                                                 @if(session()->get('language') == 'bangle')
                                                     পণ্য পাওয়া যায় নি
                                                 @else

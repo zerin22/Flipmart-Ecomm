@@ -116,7 +116,10 @@ class SubCategoryController extends Controller
             "subcategory_name_en.required" => "SubCategory English field required",
         ]);
 
-        $checkName = SubCategory::where('category_id', $request->category_id)->where('subcategory_name_bn',$request->subcategory_name_bn)->orWhere( 'subcategory_name_en', $request->subcategory_name_en)->exists();
+        $checkName = SubCategory::where('category_id', '!=' , $request->category_id)
+                    ->where('subcategory_name_bn',$request->subcategory_name_bn)
+                    ->orWhere( 'subcategory_name_en', $request->subcategory_name_en)
+                    ->exists();
 
         if($checkName)
         {

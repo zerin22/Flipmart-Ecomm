@@ -36,7 +36,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label>Banner Image: (848px 201px)</label>
+                                    <label>Banner Image: (850px 360px)</label>
                                     <input type="file" onchange="document.getElementById('img_id').src=window.URL.createObjectURL(this.files[0])" name="image" class="mb-3">
                                     <img id="img_id" width="848px" height="201px" src="{{ asset($banners->image) }}" alt="">
                                     @error('image')

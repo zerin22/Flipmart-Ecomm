@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\DiscountBanner;
+use App\Models\DiscountBannerTwo;
+use App\Models\PageBanner;
 use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +32,8 @@ class FontEndController extends Controller
         $spacial_offers = Product::where('spacial_offer',1)->where('status',1)->limit(5)->orderBy('id', 'DESC')->get();
         $spacial_deals = Product::where('spacial_deals',1)->where('status',1)->limit(5)->orderBy('id', 'DESC')->get();
 
-        $discountBanners = DiscountBanner::latest()->get();
+        $discountBanners = DiscountBanner::first();
+        $discountBannerTwo = DiscountBannerTwo::first();
 
         $blogs = Blog::latest()->limit(2)->get();
         $socialLinks = AdminSocialLink::latest()->get();
@@ -39,7 +42,7 @@ class FontEndController extends Controller
 //        $skip_category_0 = Category::skip(0)->first();
 //        $skip_category_1 = Category::skip(1)->first();
 
-        return view('index', compact('tabAllProducts', 'featureds', 'spacial_offers', 'spacial_deals','discountBanners','blogs', 'socialLinks'));
+        return view('index', compact('discountBannerTwo','tabAllProducts', 'featureds', 'spacial_offers', 'spacial_deals','discountBanners','blogs', 'socialLinks'));
     }
 
     public function singleProduct($id, $slug){
@@ -73,8 +76,9 @@ class FontEndController extends Controller
     }
 
     // tags wise product show
-    public function tagWiseProductsShow(Request $request, $tag){
-
+    public function tagWiseProductsShow(Request $request, $tag)
+    {
+        $pageBanner = PageBanner::first();
         $baseLink = 'product/tags';
         $categorys = Category::orderBy('id', 'DESC')->get();
         $tag_name = $tag;
@@ -97,11 +101,13 @@ class FontEndController extends Controller
             $products = Product::where('status', 1)->where('product_tags_en', $tag)->orWhere('product_tags_bn',$tag)->orderBy('id','DESC')->paginate(10);
         }
 
-        return view('layouts.fontend.products-tag-page', compact('products', 'categorys', 'sort','baseLink', 'tag_name'));
+        return view('layouts.fontend.products-tag-page', compact('pageBanner','products', 'categorys', 'sort','baseLink', 'tag_name'));
     }
 
 
-    public function subcategoryWiseProductShow(Request $request, $id){
+    public function subcategoryWiseProductShow(Request $request, $id)
+    {
+        $pageBanner = PageBanner::first();
         $categorys = Category::orderBy('id', 'DESC')->get();
         $baseLink = 'subCategory/product';
         $product_id = $id;
@@ -123,11 +129,13 @@ class FontEndController extends Controller
             $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id','DESC')->paginate(10);
         }
 
-        return view('layouts.fontend.subcategory-product', compact('products', 'categorys', 'baseLink', 'product_id', 'sort'));
+        return view('layouts.fontend.subcategory-product', compact('pageBanner','products', 'categorys', 'baseLink', 'product_id', 'sort'));
     }
 
     // sub sub category wise product show
-    public function subSubcategoryWiseProductShow(Request $request, $id){
+    public function subSubcategoryWiseProductShow(Request $request, $id)
+    {
+        $pageBanner = PageBanner::where('status', 'approved')->first();
         $categorys = Category::orderBy('id', 'DESC')->get();
         $baseLink = 'subSubCategory/product';
         $product_id = $id;
@@ -150,7 +158,7 @@ class FontEndController extends Controller
         }
 
 
-        return view('layouts.fontend.subcategory-product', compact('products', 'categorys','sort','baseLink','product_id'));
+        return view('layouts.fontend.subcategory-product', compact('pageBanner','products', 'categorys','sort','baseLink','product_id'));
     }
 
     //Blog

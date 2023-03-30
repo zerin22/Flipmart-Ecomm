@@ -14,7 +14,7 @@
                     <div class="user-profile-image">
                         <div class="overlay"></div>
                         <form action="">
-                            <img id="img_id" src="{{ (asset(Auth::user()->image)) ?? asset('backend/images/default/profile_img.png') }}" alt="img">
+                            <img id="img_id" src="{{ asset(Auth::user()->image ?? 'backend/images/default/profile_img.png') }}" alt="img">
                             <input type="file" id="imageInput" class="profile_file">
                         </form>
                     </div>

@@ -18,7 +18,7 @@
                                 </ul>
                             </div><!-- /.col -->
                             <div class="item_2">
-                                @if (count($banners) <= 1)
+                                @if (count($banners) <= 0)
                                 <a class="btn btn-primary" href="{{ route('banner.create') }}">Add New Banner</a>
                                 @endif
                             </div>
@@ -47,15 +47,6 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td><img width="200px" height="150px" src="{{ asset($banner->image_left)  }}" alt=""></td>
                                     <td>
-                                        {{-- <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                             Action
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ route('banner.edit', $banner->id) }}">Edit</a>
-
-                                            </div>
-                                        </div> --}}
                                         <span class="d-flex justify-content-center">
                                             <a href=" {{ route('banner.edit', $banner->id) }} " class="btn btn-info">Edit</a>
                                         </span>

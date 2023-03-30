@@ -182,9 +182,10 @@
                     <div id="category" class="category-carousel hidden-xs">
                         <div class="item">
                             <div class="image">
-                                <img src="{{ asset('fontend') }}/assets/images/banners/cat-banner-1.jpg" alt="" class="img-responsive">
+                                {{-- <img src="{{ asset('fontend') }}/assets/images/banners/cat-banner-1.jpg" alt="" class="img-responsive"> --}}
+                                <img src="{{ asset($pageBanner->image ?? 'fontend/assets/images/brands/frontend_default-image.jpg')}}" alt="Add Image" class="img-responsive">
                             </div>
-                            <div class="container-fluid">
+                            {{-- <div class="container-fluid">
                                 <div class="caption vertical-top text-left">
                                     <div class="big-text">
                                         Big Sale
@@ -198,7 +199,7 @@
                                     </div>
 
                                 </div><!-- /.caption -->
-                            </div><!-- /.container-fluid -->
+                            </div><!-- /.container-fluid --> --}}
                         </div>
                     </div>
 

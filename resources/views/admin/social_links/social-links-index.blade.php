@@ -2,6 +2,68 @@
 @section('title','Settings')
 @section('allSocialLinksActive') active @endsection
 @section('content')
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 19px;
+      width: 19px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 20px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+</style>
     <div class="content-wrapper">
 
         <div class="content-header">
@@ -142,10 +204,39 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="card m-auto">
+                <div class="row mt-5">
+                    <div class="col-md-10 m-auto">
+                        <div class="card card-warning">
+                            <div class="card-header text-center">
+                                <h4>Banner Setting</h4>
+                            </div>
 
+                            <div class="card-body d-flex">
+                                <span style="font-size:18px; display:block">Single Page Banner</span>
+                                <label class="switch ml-auto">
+                                    <input type="checkbox" class="toggle-class"  data-toggle="toggle" data-on="approved" data-off="pending" {{ $pagebanner->status == 'approved' ? 'checked' : '' }} >
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="card-body d-flex">
+                                <span style="font-size:18px; display:block">FrontPage First Discount Banner</span>
+                                <label class="switch ml-auto">
+                                    <input type="checkbox" class="toggle-class-one"  data-toggle="toggle" data-on="approved" data-off="pending" {{ $banner->status == 'approved' ? 'checked' : '' }} >
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="card-body d-flex">
+                                <span style="font-size:18px; display:block">FrontPage Second Discount Banner</span>
+                                <label class="switch ml-auto">
+                                    <input type="checkbox" class="toggle-class-two"  data-toggle="toggle" data-on="approved" data-off="pending" {{ $bannerTwo->status == 'approved' ? 'checked' : '' }} >
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -208,9 +299,60 @@
 
     <script type="text/javascript">
 
-        $(document).ready( function () {
-            $('#table_id').DataTable();
-        } );
+    $(document).ready(function() {
+        $('.toggle-class').change(function() {
+        var status = $(this).prop('checked') == true ? 'approved' : 'pending';
+
+            $.ajax({
+                type: "POST",
+                url: '{{ route('page.banner.on') }}',
+                data: {
+                status : status,
+                },
+                success: function(data){
+                    toastr.success('Status Update')
+                }
+            });
+        })
+    });
+
+    $(document).ready(function() {
+        $('.toggle-class-one').change(function() {
+        var status = $(this).prop('checked') == true ? 'approved' : 'pending';
+
+            $.ajax({
+                type: "POST",
+                url: '{{ route('discount.banner.on') }}',
+                data: {
+                status : status,
+                },
+                success: function(data){
+                    toastr.success('Status Update')
+                }
+            });
+        })
+    });
+
+    $(document).ready(function() {
+        $('.toggle-class-two').change(function() {
+        var status = $(this).prop('checked') == true ? 'approved' : 'pending';
+
+            $.ajax({
+                type: "POST",
+                url: '{{ route('discount.bannerTwo.on') }}',
+                data: {
+                status : status,
+                },
+                success: function(data){
+                    toastr.success('Status Update')
+                }
+            });
+        })
+    });
+
+    $(document).ready( function () {
+        $('#table_id').DataTable();
+    } );
 
     </script>
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdminSocialLink;
+use App\Models\DiscountBanner;
+use App\Models\DiscountBannerTwo;
+use App\Models\PageBanner;
 use Illuminate\Http\Request;
 
 class SocialLinkController extends Controller
@@ -16,7 +19,10 @@ class SocialLinkController extends Controller
     public function index()
     {
         $socialLinks = AdminSocialLink::all();
-        return view('admin.social_links.social-links-index', compact('socialLinks'));
+        $pagebanner = PageBanner::first();
+        $banner = DiscountBanner::first();
+        $bannerTwo = DiscountBannerTwo::first();
+        return view('admin.social_links.social-links-index', compact('socialLinks', 'pagebanner', 'banner', 'bannerTwo'));
 
     }
 

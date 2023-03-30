@@ -41,7 +41,7 @@ class DiscountBannerController extends Controller
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         $location = 'backend/images/discountbanner/';
         $final_image = $location.$name_gen;
-        Image::make($image)->resize(848, 201)->save($final_image);
+        Image::make($image)->resize(850, 200)->save($final_image);
         return $final_image;
     }
 
@@ -127,4 +127,15 @@ class DiscountBannerController extends Controller
         $banners->delete();
         return redirect()->route('banner.index')->with('success', 'Data delete successfully');
     }
+
+     //status Check
+     public function pageBannerStatusOn(Request $request)
+     {
+         // return $request->status;
+         $product = DiscountBanner::first();
+         $product->update([
+             'status' => $request->status
+         ]);
+         return response()->json();
+     }
 }

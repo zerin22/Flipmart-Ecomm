@@ -23,8 +23,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
+
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard') }}" class="nav-link @yield('dashboardActive')">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -44,12 +43,6 @@
                                 <p>Brand Page</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="pages/examples/contact-us.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Contact us</p>
-                            </a>
-                        </li> --}}
                     </ul>
                 </li>
 
@@ -123,13 +116,6 @@
                         </li>
                     </ul>
                 </li>
-
-                {{-- <li class="nav-item">
-                    <a href="{{ route('banner.index') }}" class="nav-link @yield('bannerActive')">
-                        <i class="nav-icon fas fa-tv"></i>
-                        <p>Discount Banner</p>
-                    </a>
-                </li> --}}
 
                 <li class="nav-item @yield('banner')">
                     <a href="#" class="nav-link">
@@ -320,40 +306,12 @@
                         <p>Product-Comments</p>
                     </a>
                 </li>
-                {{-- <li class="nav-item @yield('comment')">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-comments"></i>
-                        <p>Product-Comment<i class="fas fa-angle-left right"></i></p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('comments.store') }}" class="nav-link @yield('commentPending')">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Pending Comment</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('comments.approved.show') }}" class="nav-link @yield('commentApproved')">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Approved Comment</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
 
                 <li class="nav-item @yield('stock')">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('stock.index') }}" class="nav-link @yield('stockActive')">
                         <i class="nav-icon fas fa-laptop-house"></i>
-                        <p>Stock-Management<i class="fas fa-angle-left right"></i></p>
+                        <p>Stock-Management</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('stock.index') }}" class="nav-link @yield('stockActive')">
-                                <i class="nav-icon fas fa-sticky-note"></i>
-                                <p>All Stock</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="nav-item @yield('storeroom')">

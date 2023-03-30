@@ -125,7 +125,10 @@ class SubSubCategoryController extends Controller
         ]);
 
 
-        $checkName = SubSubCategory::where('subcategory_id', $request->subcategory_id)->where(['subsubcategory_name_en'=> $request->subsubcategory_name_en, 'subsubcategory_name_bn' => $request->subsubcategory_name_bn])->first();
+        $checkName = SubSubCategory::where('subcategory_id', '!=', $request->subcategory_id)
+                    ->where('subsubcategory_name_en',  $request->subsubcategory_name_en)
+                    ->orWhere('subsubcategory_name_bn', $request->subsubcategory_name_bn)
+                    ->exists();
 
         if($checkName){
             return redirect()->back()->with('fail', 'Sub SubCategory already exists under this subcategory');

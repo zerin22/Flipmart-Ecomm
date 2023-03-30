@@ -126,4 +126,14 @@ class DiscountBannerTwoController extends Controller
         $banners->delete();
         return redirect()->route('bannerTwo.index')->with('success', 'Data delete successfully');
     }
+
+     //status Check
+     public function pageBannerStatusOn(Request $request)
+     {
+         $product = DiscountBannerTwo::first();
+         $product->update([
+             'status' => $request->status
+         ]);
+         return response()->json();
+     }
 }

@@ -13,7 +13,7 @@
                     <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                         <div class="item_1">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('bannerTwo.index') }}"></a>Discount Banner Two</li>
+                                <li class="breadcrumb-item"><a href="{{ route('bannerTwo.index') }}">Discount BannerTwo</a></li>
                                 <li class="breadcrumb-item active">Discount Banner Two Create</li>
                             </ul>
                         </div>

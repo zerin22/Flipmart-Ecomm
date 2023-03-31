@@ -19,6 +19,7 @@ use App\Models\DiscountBannerTwo;
 use App\Models\PageBanner;
 use App\Models\SubCategory;
 use App\Models\User;
+use App\Models\VisitorCheck;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,7 @@ class FontEndController extends Controller
 {
     public function index()
     {
+
         $tabAllProducts = Product::where('status',1)->get();
         $featureds = Product::where('featured', 1)->where('status', 1)->orderBy('id', 'DESC')->get();
 
@@ -38,6 +40,22 @@ class FontEndController extends Controller
         $blogs = Blog::latest()->limit(2)->get();
         $socialLinks = AdminSocialLink::latest()->get();
 
+        //visitor Check
+        $ip = request()->ip();
+        $visitors = VisitorCheck::where('ip_address', $ip)->exists();
+        if($visitors){
+            DB::table('visitor_checks')->increment('visit_count');
+            $visit = VisitorCheck::where('ip_address', $ip)->first();
+            $visit->updated_at = Carbon::now();
+            $visit->save();
+        }
+        else{
+            $visitor = VisitorCheck::insert([
+                'ip_address' => $ip,
+                'visit_count' => '1',
+                'created_at' => Carbon::now(),
+            ]);
+        }
 
 //        $skip_category_0 = Category::skip(0)->first();
 //        $skip_category_1 = Category::skip(1)->first();

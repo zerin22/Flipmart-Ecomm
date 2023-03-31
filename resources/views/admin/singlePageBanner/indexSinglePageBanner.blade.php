@@ -37,7 +37,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Bannaer Image Left</th>
+                                <th>Banner Image</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -49,6 +49,11 @@
                                     <td>
                                         <span class="d-flex justify-content-center">
                                             <a href=" {{ route('singlePageBanner.edit', $banner->id) }} " class="btn btn-info">Edit</a>
+                                            {{-- <form action="{{ route('singlePageBanner.destroy', $banner->id) }}" method="POST" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form> --}}
                                         </span>
                                     </td>
                                 </tr>

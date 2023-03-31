@@ -2,9 +2,10 @@
 @section('title', 'Dashboard')
 @section('dashboardActive') active @endsection
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -14,9 +15,7 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->
 
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
@@ -59,7 +58,7 @@
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('allUser') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -67,7 +66,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $totalvisitor }}</h3>
 
                                 <p>Unique Visitors</p>
                             </div>
@@ -80,8 +79,47 @@
                     <!-- ./col -->
                 </div>
 
-            </div><!-- /.container-fluid -->
+                <div class="row">
+                    <div class="col-md-8 m-auto">
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h4>Order Chart Years</h4>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <!-- /.content -->
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['2020', '2021', '2022', '2023'],
+            datasets: [{
+            label: 'Products Oder',
+            data: [12, 19, 3, 5],
+            data: @json($monthOrder),
+            borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+            y: {
+                beginAtZero: true
+            }
+            }
+        }
+        });
+    </script>
 @endsection

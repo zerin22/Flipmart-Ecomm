@@ -390,11 +390,11 @@
                                 @foreach($categorys as $cat)
                                     <li class="dropdown yamm mega-menu">
                                             @if(session()->get('language') == 'bangle')
-                                                <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                                                <a href="#" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
                                                     {{ $cat->category_name_bn }}
                                                 </a>
                                             @else
-                                                <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                                                <a href="#" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
                                                     {{ $cat->category_name_en }}
                                                 </a>
                                             @endif

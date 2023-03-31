@@ -98,7 +98,7 @@ class PageBannerController extends Controller
         {
             $request->validate([
                 'image' => 'image|mimes:jpg,png,jpeg,gif,svg',
-             ]);
+            ]);
 
             $banners = PageBanner::findOrFail($id);
             $image = $request->file('image');
@@ -121,14 +121,17 @@ class PageBannerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $banners = PageBanner::findOrFail($id);
+        unlink($banners->image);
+        $banners->delete();
+        return redirect()->route('singlePageBanner.index')->with('success', 'Data delete successfully');
     }
 
     //status Check
     public function pageBannerStatusOn(Request $request)
     {
-        $product = PageBanner::first();
-        $product->update([
+        $banner = PageBanner::first();
+        $banner->update([
             'status' => $request->status
         ]);
         return response()->json();

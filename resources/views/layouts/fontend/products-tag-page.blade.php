@@ -179,14 +179,16 @@
                     </div><!-- /.sidebar-module-container -->
                 </div><!-- /.sidebar -->
                 <div class='col-md-9'>
-                    @if($pageBanner->status == 'approved')
-                        <div id="category" class="category-carousel hidden-xs">
-                            <div class="item">
-                                <div class="image">
-                                    <img src="{{ asset($pageBanner->image) }}" alt="Add Image" class="img-responsive">
+                    @if($pageBanner)
+                        @if($pageBanner->status == 'approved')
+                            <div id="category" class="category-carousel hidden-xs">
+                                <div class="item">
+                                    <div class="image">
+                                        <img src="{{ asset($pageBanner->image) }}" alt="Add Image" class="img-responsive">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
                     <div class="clearfix filters-container m-t-10">
                         <div class="row">

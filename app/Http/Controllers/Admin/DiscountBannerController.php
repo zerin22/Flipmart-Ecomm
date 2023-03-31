@@ -132,8 +132,8 @@ class DiscountBannerController extends Controller
      public function pageBannerStatusOn(Request $request)
      {
          // return $request->status;
-         $product = DiscountBanner::first();
-         $product->update([
+         $banner = DiscountBanner::first();
+         $banner->update([
              'status' => $request->status
          ]);
          return response()->json();

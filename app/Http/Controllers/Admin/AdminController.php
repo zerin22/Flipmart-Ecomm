@@ -7,6 +7,7 @@ use App\Models\AdminBio;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\VisitorCheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,14 @@ class AdminController extends Controller
         $totalProduct = Product::count();
         $totalOrder = Order::where('status', 'pending')->count();
         $totalUser = User::where('role_id', '2')->count();
-        return view('admin.home', compact('totalProduct','totalOrder', 'totalUser'));
+        $totalvisitor = VisitorCheck::count();
+
+        //For Chart
+        $monthOrder = [];
+        for ($i=2020; $i <=2023 ; $i++) {
+            $monthOrder []  = Order::where('order_year', $i)->count();
+        }
+        return view('admin.home', compact('totalProduct','totalOrder', 'totalUser','totalvisitor', 'monthOrder'));
    }
 
    public function adminProfileShow(){

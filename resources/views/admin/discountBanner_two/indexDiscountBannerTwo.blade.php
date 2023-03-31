@@ -18,7 +18,7 @@
                                 </ul>
                             </div><!-- /.col -->
                             <div class="item_2">
-                                @if (count($banners) <= 0)
+                                @if (count($banners) <= 1)
                                 <a class="btn btn-primary" href="{{ route('bannerTwo.create') }}">Add New Banner</a>
                                 @endif
                             </div>
@@ -37,7 +37,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Bannaer Image</th>
+                                <th>Banner Image</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -49,6 +49,11 @@
                                     <td>
                                         <span class="d-flex justify-content-center">
                                             <a href=" {{ route('bannerTwo.edit', $banner->id) }} " class="btn btn-info">Edit</a>
+                                            {{-- <form action="{{ route('bannerTwo.destroy', $banner->id) }}" method="POST" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form> --}}
                                         </span>
                                     </td>
                                 </tr>

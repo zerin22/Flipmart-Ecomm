@@ -587,18 +587,20 @@
                         </div><!-- /.tab-content -->
                     </div>
 
-                    @if($discountBanners->status == 'approved')
-                        <div class="wide-banners wow fadeInUp outer-bottom-xs">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="wide-banner cnt-strip">
-                                        <div class="image">
-                                            <img class="img-responsive" src="{{ asset($discountBanners->image_left) }}" alt="">
-                                        </div>
-                                    </div><!-- /.wide-banner -->
-                                </div><!-- /.col -->
-                            </div><!-- /.row -->
-                        </div><!-- /.wide-banners -->
+                    @if($discountBanners)
+                        @if($discountBanners->status == 'approved')
+                            <div class="wide-banners wow fadeInUp outer-bottom-xs">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="wide-banner cnt-strip">
+                                            <div class="image">
+                                                <img class="img-responsive" src="{{ asset($discountBanners->image_left) }}" alt="">
+                                            </div>
+                                        </div><!-- /.wide-banner -->
+                                    </div><!-- /.col -->
+                                </div><!-- /.row -->
+                            </div><!-- /.wide-banners -->
+                        @endif
                     @endif
                     <section class="section featured-product wow fadeInUp">
                         <h3 class="section-title">
@@ -723,23 +725,22 @@
                         </div>
                     </section>
 
-
-
-
                     <!-- ================ FEATURED PRODUCTS : END ================== -->
                     <!-- ================== WIDE PRODUCTS =================== -->
-                    @if($discountBannerTwo->status == 'approved')
-                        <div class="wide-banners wow fadeInUp outer-bottom-xs">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="wide-banner cnt-strip">
-                                        <div class="image">
-                                            <img src="{{ asset($discountBannerTwo->image ?? '')}}" alt="Add Image" class="img-responsive">
-                                        </div>
-                                    </div><!-- /.wide-banner -->
-                                </div><!-- /.col -->
-                            </div><!-- /.row -->
-                        </div><!-- /.wide-banners -->
+                    @if($discountBannerTwo)
+                        @if($discountBannerTwo->status == 'approved')
+                            <div class="wide-banners wow fadeInUp outer-bottom-xs">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="wide-banner cnt-strip">
+                                            <div class="image">
+                                                <img src="{{ asset($discountBannerTwo->image ?? '')}}" alt="Add Image" class="img-responsive">
+                                            </div>
+                                        </div><!-- /.wide-banner -->
+                                    </div><!-- /.col -->
+                                </div><!-- /.row -->
+                            </div><!-- /.wide-banners -->
+                        @endif
                     @endif
                     <!-- ============= ======== WIDE PRODUCTS : END ======== =================== -->
 

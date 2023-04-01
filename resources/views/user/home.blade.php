@@ -32,7 +32,7 @@
                         <a class="btn btn-primary" href="{{ route('updatePassword-Show')}}" >Update Password</a>
                     </div>
                     <div class="profile_item">
-                        <h4>Total Buy: <span style="color:green; font-weight:700">5 Items</span></h4>
+                        <h4>Total Order: <span style="color:green; font-weight:700">{{count($orders)}}</span></h4>
                     </div>
                 </div>
             </div>

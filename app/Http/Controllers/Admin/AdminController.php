@@ -60,8 +60,6 @@ class AdminController extends Controller
         return redirect()->route('admin.profile');
     }
 
-
-
     // password update settings
     public function showPasswordUpdatePage(){
        return view('admin.password-update');

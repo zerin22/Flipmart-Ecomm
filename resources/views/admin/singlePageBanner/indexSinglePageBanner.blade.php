@@ -14,7 +14,7 @@
                             <div class="item_1">
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Page Bannaer</li>
+                                    <li class="breadcrumb-item active">Page Banner</li>
                                 </ul>
                             </div><!-- /.col -->
                             <div class="item_2">

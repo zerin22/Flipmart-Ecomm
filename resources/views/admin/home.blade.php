@@ -108,7 +108,7 @@
             labels: ['2020', '2021', '2022', '2023'],
             datasets: [{
             label: 'Products Oder',
-            data: [12, 19, 3, 5],
+            // data: [12, 19, 3, 5],
             data: @json($monthOrder),
             borderWidth: 1
             }]

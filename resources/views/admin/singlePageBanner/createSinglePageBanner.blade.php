@@ -13,7 +13,7 @@
                     <div class="breadrow d-flex justify-content-between mb-3 mt-4">
                         <div class="item_1">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('singlePageBanner.index') }}"></a>SinglePage Banner</li>
+                                <li class="breadcrumb-item"><a href="{{ route('singlePageBanner.index') }}"></a>Page Banner</li>
                                 <li class="breadcrumb-item active">Single Page Banner</li>
                             </ul>
                         </div>

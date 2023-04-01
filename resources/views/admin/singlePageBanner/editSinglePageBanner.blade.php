@@ -14,7 +14,7 @@
                         <div class="item_1">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('singlePageBanner.index') }}">Page Banner</a></li>
-                                <li class="breadcrumb-item active">Update Single Page Banner</li>
+                                <li class="breadcrumb-item active">Update Page Banner</li>
                             </ul>
                         </div>
                     </div>

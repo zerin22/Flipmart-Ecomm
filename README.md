@@ -12,7 +12,7 @@ This is a Ecommerce Site named Filpmart
     <li>Bootstrap</li>
 </ul>
 
-### Necessary Steps
+## For Run the project:
 <ul>
    <li>Command: composer update</li>
    <li>copy the .env.example file and named it .env</li>

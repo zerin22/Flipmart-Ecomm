@@ -1,8 +1,6 @@
 # This is a Laravel PHP Project
 This is a Ecommerce Site named Filpmart 
-
 ##A list of technologies used in this project.
-<hr>
 <ul>
 <li>Laravel</li>
 <li>PHP</li>
@@ -13,5 +11,3 @@ This is a Ecommerce Site named Filpmart
 <li>CSS</li>
 <li>Bootstrap</li>
 </ul>
-<hr>
-##

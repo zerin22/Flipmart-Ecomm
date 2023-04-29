@@ -1,5 +1,5 @@
 # This is a Laravel PHP Project
-This is a Ecommerce Site named Filpmart 
+This is a Ecommerce Site named Flipmart. 
 ## A list of technologies used in this project.
 <ul>
     <li>Laravel</li>
@@ -21,7 +21,7 @@ This is a Ecommerce Site named Filpmart
    <li>Command: php artisan migrate</li>
    <li>Command: php artisan db:seed</li>
    <li>For Admin Login: <br>
-        Email:admin@gmail.com <br>
-        Password:admin@gmail.com
+        Email: admin@gmail.com <br>
+        Password: admin@gmail.com
    </li>
 </ul>
